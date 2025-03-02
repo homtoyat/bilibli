@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,10 +12,10 @@ export const SearchBar = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div className="relative mx-4 my-2 flex items-center gap-4 bg-white rounded px-1  hover:bg-neutral-200 group ">
+        <div className="group relative mx-4 my-2 flex items-center gap-4 rounded bg-white px-1 hover:bg-neutral-200">
           <Input
             placeholder="next.js"
-            className="border-0  opacity-100 outline-blue-600 outline-hidden focus:outline-sky-500 group-hover:opacity-100 focus:bg-white  "
+            className="border-0 opacity-100 outline-hidden outline-blue-600 group-hover:opacity-100 focus:bg-white focus:outline-sky-500"
             type="text"
           ></Input>
           <SearchIcon className=""></SearchIcon>
@@ -25,8 +24,8 @@ export const SearchBar = () => {
       <PopoverContent className="w-80">
         <div className="grid gap-4">
           <div className="space-y-2">
-            <h4 className="font-medium leading-none">Dimensions</h4>
-            <p className="text-sm text-muted-foreground">
+            <h4 className="leading-none font-medium">Dimensions</h4>
+            <p className="text-muted-foreground text-sm">
               Set the dimensions for the layer.
             </p>
           </div>
