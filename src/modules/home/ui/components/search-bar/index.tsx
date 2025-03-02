@@ -13,11 +13,11 @@ export const SearchBar = () => {
     <Popover>
       <PopoverTrigger asChild>
         <div className="group relative mx-4 my-2 flex items-center gap-4 rounded bg-white px-1 hover:bg-neutral-200">
-          <Input
+          <input
             placeholder="next.js"
-            className="border-0 opacity-100 outline-hidden outline-blue-600 group-hover:opacity-100 focus:bg-white focus:outline-sky-500"
+            className="w-full border-0 px-1 py-2 opacity-100 outline-hidden outline-blue-600 focus:bg-white/100 focus:outline-sky-500"
             type="text"
-          ></Input>
+          ></input>
           <SearchIcon className=""></SearchIcon>
         </div>
       </PopoverTrigger>
