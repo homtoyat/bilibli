@@ -42,14 +42,14 @@ export const NavBar = () => {
         alt={"banner"}
         className="absolute -z-40 transition-all duration-2000 group-hover:scale-110"
       ></Image> */}
-      <div className="flex h-16 items-center">
+      <div className="flex h-16 w-full items-center">
         <Link href={"/abcs"}>
           <Image
             src={logo}
             alt={"lgo"}
             width={80}
             className={cn(
-              "absolute top-14 -bottom-1/2 left-32 scale-140 cursor-pointer opacity-50 transition-all duration-700 hover:opacity-100",
+              "absolute bottom-1/9 left-32 scale-140 animate-bounce cursor-pointer opacity-100 transition-all duration-700 hover:opacity-90",
             )}
           ></Image>
         </Link>
@@ -74,7 +74,7 @@ export const NavBar = () => {
             下载客户端
           </MenuItem>
         </div>
-        <div className="flex-1">
+        <div className="flex-3">
           <SearchBar></SearchBar>
         </div>
         <div className="flex gap-4 px-4 py-2">
