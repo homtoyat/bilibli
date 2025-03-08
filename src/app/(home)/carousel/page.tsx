@@ -16,7 +16,11 @@ export default function Motion() {
         }}
       ></button>
       <AnimatePresence>
-        <motion.div animate={`active_${index}`} initial="inactive">
+        <motion.div
+          animate={`active_${index}`}
+          initial="inactive"
+          whileHover={["hoverActive", `active_0`]}
+        >
           <motion.header className="flex items-center justify-center gap-4">
             <motion.div
               variants={{
@@ -58,6 +62,10 @@ export default function Motion() {
                   scale: 1.9,
                   backgroundColor: "#33ddff",
                   opacity: 1,
+                },
+                hoverActive: {
+                  scale: 3,
+                  rotate: 360,
                 },
               }}
             >
