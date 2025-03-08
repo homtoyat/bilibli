@@ -2,10 +2,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 export default function Motion() {
-  const index0 = 0;
-  const index1 = 1;
-  const index2 = 2;
-  const index3 = 3;
   const [index, setIndex] = useState(-1);
   return (
     <div className="">
