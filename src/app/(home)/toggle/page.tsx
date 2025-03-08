@@ -1,26 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 export default function Motion() {
+  const [visible, setVisible] = useState(true);
   return (
-    <div className="">
-      <motion.ol
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        animate={{ "--x": "100px", "--color": "#33dd33" }}
-        initial={{ "--x": "0px", "--color": "#f39d03" }}
-        transition={{
-          duration: 1,
-          repeatType: "reverse",
-          repeat: Infinity,
+    <div className="flex flex-col items-center justify-center gap-4">
+      <button
+        className="bg-amber-600 hover:bg-amber-600/80"
+        onClick={() => {
+          setVisible(() => !visible);
         }}
-        className="flex flex-col bg-amber-300 text-center text-black ring-4 ring-offset-8"
       >
-        <li className="bg-accent text-[var(--color )] translate-x-[var(--x)]">
-          1
-        </li>
-        <li className="translate-x-[var(--x)]">2</li>
-      </motion.ol>
+        toggle visibility
+      </button>
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            exit={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0 }}
+            className="h-20 w-20 rounded-2xl bg-neutral-700/50 p-4"
+          >
+            dddd happy
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
