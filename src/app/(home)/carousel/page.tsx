@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+
 export default function Motion() {
   const [index, setIndex] = useState(-1);
   return (
