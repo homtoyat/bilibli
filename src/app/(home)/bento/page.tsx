@@ -1,74 +1,45 @@
 "use client";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { useRef, useState } from "react";
+const FadeIn = ({ children, ...param }) => {
+  const ref = useRef(null);
+  const [value, setValue] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "start start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0.1]);
+  useMotionValueEvent(scrollYProgress, "change", (v) => setValue(v));
+  return (
+    <motion.div ref={ref} {...param} style={{ opacity }}>
+      {children} :{value}
+    </motion.div>
+  );
+};
 export default function Page() {
   return (
-    <motion.div
-      style={{
-        width: 300,
-        height: 300,
-        backgroundColor: "#88ffdd",
-        margin: "1000px auto",
-      }}
-      initial="hidden"
-      whileInView="inView"
-      variants={{
-        inView: {
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 2, staggerChildren: 0.4 },
-        },
-        hidden: {
-          opacity: 0,
-          transition: {
-            duration: 1,
-            staggerChildren: 0.4,
-            staggerDirection: -1,
-          },
-        },
-      }}
-      viewport={{ amount: 1 }}
-    >
-      <div className="flex w-full gap-4">
-        <motion.div
-          className="h-33 flex-1 bg-yellow-300"
-          variants={{
-            inView: {
-              opacity: 1,
-              scale: 1,
-            },
-            hidden: {
-              opacity: 0,
-              scale: 1,
-            },
-          }}
-        ></motion.div>
-        <motion.div
-          className="h-33 flex-2 bg-yellow-300"
-          variants={{
-            inView: {
-              opacity: 1,
-              scale: 1,
-            },
-            hidden: {
-              opacity: 0,
-              scale: 1,
-            },
-          }}
-        ></motion.div>
-        <motion.div
-          className="h-33 flex-3 bg-yellow-300"
-          variants={{
-            inView: {
-              opacity: 1,
-              scale: 1,
-            },
-            hidden: {
-              opacity: 0,
-              scale: 1,
-            },
-          }}
-        ></motion.div>
+    <div className="bg-neutral-500">
+      <div className="h-screen w-screen bg-neutral-500"></div>
+      <div className="flex h-130 justify-center gap-4">
+        <FadeIn className="bg-n flex w-full justify-center rounded-2xl bg-neutral-100/20">
+          left content
+        </FadeIn>
+        <div className="flex w-400 flex-col items-center justify-center gap-4">
+          <FadeIn className="w-full flex-1 rounded bg-neutral-100/20">
+            top right
+          </FadeIn>
+          <FadeIn className="w-full flex-1 rounded-2xl bg-neutral-100/20">
+            left right
+          </FadeIn>
+        </div>
       </div>
-    </motion.div>
+      cr
+      <div className="w-seen h-screen bg-amber-300/70"></div>
+    </div>
   );
 }
