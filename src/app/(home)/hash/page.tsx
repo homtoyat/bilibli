@@ -1,61 +1,75 @@
-// pages/index.tsx
 "use client";
-import { useState } from "react";
-
-export default function HashCalculator() {
-  const [hash, setHash] = useState<string>("");
-  const [progress, setProgress] = useState<number>(0);
-
-  // 计算文件的 SHA-256
-  const calculateHash = async (file: File) => {
-    const chunkSize = 4 * 1024 * 1024; // 分块大小（4MB）
-    let offset = 0;
-    const crypto = window.crypto.subtle;
-
-    // 初始化哈希算法
-    const hash = await crypto.digest("SHA-256", new Uint8Array());
-    const buffer = await crypto.digest("SHA-256", new Uint8Array());
-    let result = new Uint8Array(buffer);
-
-    while (offset < file.size) {
-      const chunk = file.slice(offset, offset + chunkSize);
-      const reader = new FileReader();
-      const arrayBuffer = await new Promise<ArrayBuffer>((resolve) => {
-        reader.onload = (e) => resolve(e.target?.result as ArrayBuffer);
-        reader.readAsArrayBuffer(chunk);
-      });
-
-      // 逐块更新哈希
-      const chunkHash = await crypto.digest(
-        "SHA-256",
-        new Uint8Array(arrayBuffer),
-      );
-      result = new Uint8Array([...result, ...new Uint8Array(chunkHash)]);
-
-      offset += chunkSize;
-      setProgress(Math.round((offset / file.size) * 100));
-    }
-
-    // 生成最终哈希
-    const finalHash = await crypto.digest("SHA-256", result);
-    const hashArray = Array.from(new Uint8Array(finalHash));
-    const hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-    setHash(hashHex);
-  };
-
-  // 选择文件
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) await calculateHash(file);
-  };
-
+import { motion } from "framer-motion";
+export default function Page() {
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      {progress > 0 && <p>进度: {progress}%</p>}
-      {hash && <p>SHA-256: {hash}</p>}
+      <div className="h-screen">d</div>
+      <motion.div
+        viewport={{ amount: 0.5 }}
+        className="flex gap-4"
+        whileInView="visible"
+        initial="hidden"
+        animate="hidden"
+        variants={{
+          visible: {
+            transition: { staggerChildren: 0.4 },
+          },
+          hidden: {
+            transition: {
+              staggerChildren: 0.4,
+              staggerDirection: -1,
+            },
+          },
+        }}
+      >
+        <motion.div
+          variants={{
+            visible: {
+              opacity: 1,
+              x: 0,
+            },
+            hidden: {
+              opacity: 0,
+              x: -100,
+            },
+          }}
+          transition={{ duration: 1 }}
+          className="h-100 flex-1 rounded-2xl bg-amber-300"
+        ></motion.div>
+        <motion.div
+          variants={{
+            visible: {
+              opacity: 1,
+              x: 0,
+            },
+            hidden: {
+              opacity: 0,
+              x: -100,
+            },
+          }}
+          transition={{ duration: 1 }}
+          className="h-100 flex-1 rounded-2xl bg-amber-300"
+        ></motion.div>
+        <motion.div
+          variants={{
+            visible: {
+              opacity: 1,
+              backgroundColor: "#990033",
+              scaleX: 1,
+              x: 0,
+            },
+            hidden: {
+              opacity: 0,
+              backgroundColor: "#999999",
+              scaleX: 0,
+              x: -100,
+            },
+          }}
+          transition={{ duration: 1 }}
+          className="h-100 flex-1 origin-left rounded-2xl"
+        ></motion.div>
+      </motion.div>
+      <div className="h-screen">d</div>
     </div>
   );
 }

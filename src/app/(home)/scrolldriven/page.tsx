@@ -1,17 +1,42 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useRef, useState } from "react";
 export default function Page() {
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.1 });
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const { scrollXProgress, scrollY, scrollYProgress, scrollX } = useScroll();
+  // useMotionValueEvent(scrollX, "change", (x) => {
+  //   debugger;
+  //   setX(x);
+  // });
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  useMotionValueEvent(scrollY, "change", (y) => {
+    debugger;
+    setY(y);
+  });
   return (
-    <div>
-      <div className="h-screen">d</div>
+    <div className="w-screen">
+      <div className="h-screen w-screen">{x}</div>
+      <motion.div
+        style={{ scaleX: useSpring(scaleX) }}
+        className="fixed top-0 mx-auto flex w-full origin-left justify-center bg-amber-300"
+      >
+        {y}
+      </motion.div>
       <motion.div
         ref={ref}
-        className="flex gap-4"
+        viewport={{ amount: 0.5 }}
+        className="flex flex-nowrap gap-4 overflow-x-auto"
+        whileInView="visible"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate="hidden"
         variants={{
           visible: {
             transition: { staggerChildren: 0.4 },
@@ -36,8 +61,10 @@ export default function Page() {
             },
           }}
           transition={{ duration: 1 }}
-          className="h-100 flex-1 rounded-2xl bg-amber-300"
-        ></motion.div>
+          className="h-100 w-100 rounded-2xl bg-amber-300"
+        >
+          {`y:${y}`}
+        </motion.div>
         <motion.div
           variants={{
             visible: {
@@ -50,7 +77,7 @@ export default function Page() {
             },
           }}
           transition={{ duration: 1 }}
-          className="h-100 flex-1 rounded-2xl bg-amber-300"
+          className="h-100 w-100 rounded-2xl bg-amber-300"
         ></motion.div>
         <motion.div
           variants={{
@@ -68,7 +95,7 @@ export default function Page() {
             },
           }}
           transition={{ duration: 1 }}
-          className="h-100 flex-1 origin-left rounded-2xl"
+          className="h-100 w-240 origin-left rounded-2xl"
         ></motion.div>
       </motion.div>
       <div className="h-screen">d</div>

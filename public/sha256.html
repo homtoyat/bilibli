@@ -29,7 +29,7 @@
       return;
     }
 
-    const chunkSize = 1024 * 1024; // 1MB 块大小
+    const chunkSize = 1024 * 1024*1; // 1MB 块大小
     const sha256Hasher = sha256.create();
     const reader = new FileReader();
     const startTime =  new Date().getTime();
@@ -39,7 +39,7 @@
    
       const end = Math.min(start + chunkSize, file.size);
       const slice = file.slice(start, end);
-      console.log({size:end-start})
+      console.log({size:`${slice}`})
       reader.readAsArrayBuffer(slice);
 
       reader.onload = () => {
