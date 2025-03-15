@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用 js-sha256 分块计算文件 SHA-256 摘要</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+</head>
+
+<body>
+<input type="file" id="fileInput">
+<button id="calculateButton">计算 SHA-256 摘要</button>
+<p id="result"></p>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const calculateButton = document.getElementById('calculateButton');
+  const resultElement = document.getElementById('result');
+
+  calculateButton.addEventListener('click', async () => {
+    const file = fileInput.files[0];
+    if (!file) {
+      resultElement.textContent = '请选择一个文件。';
+      return;
+    }
+
+    const chunkSize = 1024 * 1024; // 1MB 块大小
+    const sha256Hasher = sha256.create();
+    const reader = new FileReader();
+
+    const processChunk = (start) => {
+      const end = Math.min(start + chunkSize, file.size);
+      const slice = file.slice(start, end);
+
+      reader.readAsArrayBuffer(slice);
+
+      reader.onload = () => {
+        const chunk = new Uint8Array(reader.result);
+        // 使用 update 方法更新哈希值
+        sha256Hasher.update(chunk);
+
+        if (end < file.size) {
+          processChunk(end);
+        } else {
+          // 获取最终的哈希值
+          const hash = sha256Hasher.hex();
+          resultElement.textContent = `文件的 SHA-256 摘要为: ${hash}`;
+        }
+      };
+
+      reader.onerror = () => {
+        resultElement.textContent = '读取文件时出错。';
+      };
+    };
+
+    processChunk(0);
+  });
+</script>
+</body>
+
+</html>
