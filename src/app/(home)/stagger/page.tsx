@@ -17,12 +17,13 @@ export default function Motion() {
       </button>
       <motion.div
         className="w-16 bg-amber-400 shadow-2xl"
-        animate={open ? "open" : "closed"}
+        animate="closed"
         initial="closed"
+        whileInView="open"
         variants={{
           open: {
             width: "10rem",
-            transition: { staggerChildren: 0.1 },
+            transition: { staggerChildren: 0.4 },
           },
           closed: {
             width: "0",
