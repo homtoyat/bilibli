@@ -12,11 +12,15 @@
 <input type="file" id="fileInput">
 <button id="calculateButton">计算 SHA-256 摘要</button>
 <p id="result"></p>
+<p id="progress">ddd</p>
+<input type="range" id="progressbar" value="0">
 
 <script>
   const fileInput = document.getElementById('fileInput');
   const calculateButton = document.getElementById('calculateButton');
   const resultElement = document.getElementById('result');
+  const progressElement = document.getElementById('progress');
+  const progressBarElement = document.getElementById('progressbar');
 
   calculateButton.addEventListener('click', async () => {
     const file = fileInput.files[0];
@@ -28,24 +32,36 @@
     const chunkSize = 1024 * 1024; // 1MB 块大小
     const sha256Hasher = sha256.create();
     const reader = new FileReader();
-
+    const startTime =  new Date().getTime();
+    console.log({startTime})
     const processChunk = (start) => {
+      
+   
       const end = Math.min(start + chunkSize, file.size);
       const slice = file.slice(start, end);
-
+      console.log({size:end-start})
       reader.readAsArrayBuffer(slice);
 
       reader.onload = () => {
+      
         const chunk = new Uint8Array(reader.result);
         // 使用 update 方法更新哈希值
         sha256Hasher.update(chunk);
 
         if (end < file.size) {
           processChunk(end);
+          progressBarElement.value=(end/file.size *100).toFixed(2);
+          progressElement.textContent= `${(end/file.size *100).toFixed(2)}%`
         } else {
           // 获取最终的哈希值
+
           const hash = sha256Hasher.hex();
-          resultElement.textContent = `文件的 SHA-256 摘要为: ${hash}`;
+           progressElement.textContent= `100%`
+          
+          const endTime =  new Date().getTime();
+          console.log({endTime})
+          resultElement.textContent = `文件的 SHA-256 摘要为: ${hash}   耗时：${(endTime-startTime).toFixed(2)}ms`;
+          progressBarElement.value=100;
         }
       };
 
