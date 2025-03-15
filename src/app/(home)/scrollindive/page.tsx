@@ -13,7 +13,10 @@ export default function Page() {
   const [y, setY] = useState(0);
   const [divProgress, setDivProgress] = useState(0);
   const { scrollXProgress, scrollY, scrollYProgress, scrollX } = useScroll({});
-  const { scrollXProgress: scaleDivX } = useScroll({ container: ref });
+  const { scrollXProgress: scaleDivX } = useScroll({
+    container: ref,
+    axis: "y",
+  });
   useMotionValueEvent(scaleDivX, "change", (divx) => setDivProgress(divx));
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   useMotionValueEvent(scrollY, "change", (y) => {
