@@ -70,7 +70,7 @@ export default function Page() {
             },
           }}
           transition={{ duration: 1 }}
-          className="h-100 w-100 rounded-2xl bg-amber-300"
+          className="h-100 w-100 gap-4 rounded-2xl bg-amber-300"
         >
           {`y:${y}`}
         </motion.div>
