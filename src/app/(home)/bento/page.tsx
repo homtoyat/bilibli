@@ -13,7 +13,7 @@ const FadeIn = ({ children, ...param }) => {
     target: ref,
     offset: ["start end", "start start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0.1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0.4]);
   useMotionValueEvent(scrollYProgress, "change", (v) => setValue(v));
   return (
     <motion.div ref={ref} {...param} style={{ opacity }}>
@@ -25,8 +25,8 @@ export default function Page() {
   return (
     <div className="bg-neutral-500">
       <div className="h-screen w-screen bg-neutral-500"></div>
-      <div className="flex h-130 justify-center gap-4">
-        <FadeIn className="bg-n flex w-full justify-center rounded-2xl bg-neutral-100/20">
+      <div className="flex h-140 justify-center gap-4">
+        <FadeIn className="sticky top-0 left-0 flex h-50 w-full justify-center rounded-2xl bg-green-500/90">
           left content
         </FadeIn>
         <div className="flex w-400 flex-col items-center justify-center gap-4">

@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 
 const VideoPlayer = () => {
   //video path
-  const videosrc = "http://127.0.0.1:8080/1.mp4";
+  const videosrc = "http://127.0.0.1:8080/protected/1.mp4";
 
   return (
     <div>
