@@ -46,7 +46,7 @@ const MsgDetail = ({ active, setActive }) => {
   );
 };
 const MailBoxWithDropdown = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
   return (
     <MenuItem>
       <div

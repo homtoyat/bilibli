@@ -1,70 +1,37 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
+"use client";
+import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
-
+import { useState } from "react";
 export const SearchBar = () => {
+  const [active, setActive] = useState(false);
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <div className="group relative mx-4 my-2 flex items-center gap-4 rounded bg-white px-1 hover:bg-neutral-200">
+    <div className="relative flex h-8 flex-3 flex-col p-2">
+      <div
+        className={cn(
+          "group absolute left-0 w-full bg-transparent pt-2",
+          active && "h-100 rounded bg-white shadow-sm",
+        )}
+      >
+        <div
+          className={cn(
+            "bg-transparent",
+            active && "px-2 pb-0.5 hover:bg-neutral-100/60",
+          )}
+        >
           <input
-            placeholder="next.js"
-            className="w-full border-0 px-1 py-2 opacity-100 outline-hidden outline-blue-600 focus:bg-white/100 focus:outline-sky-500"
-            type="text"
+            className="hover:bg-natural-100 z-10 h-8 w-full rounded bg-neutral-400/30 px-4 outline-none hover:bg-neutral-400/10"
+            onClick={() => setActive(true)}
           ></input>
-          <SearchIcon className=""></SearchIcon>
+          <SearchIcon className="absolute top-3 right-3"></SearchIcon>
         </div>
-      </PopoverTrigger>
-      <PopoverContent className="w-80">
-        <div className="grid gap-4">
-          <div className="space-y-2">
-            <h4 className="leading-none font-medium">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
-            </p>
-          </div>
-          <div className="grid gap-2">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
-              <Input
-                id="width"
-                defaultValue="100%"
-                className="col-span-2 h-8"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Max. width</Label>
-              <Input
-                id="maxWidth"
-                defaultValue="300px"
-                className="col-span-2 h-8"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Height</Label>
-              <Input
-                id="height"
-                defaultValue="25px"
-                className="col-span-2 h-8"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Max. height</Label>
-              <Input
-                id="maxHeight"
-                defaultValue="none"
-                className="col-span-2 h-8"
-              />
-            </div>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
+
+        <div
+          onMouseEnter={() => setActive(true)}
+          onMouseLeave={() => setActive(false)}
+          onClick={() => setActive(true)}
+          className="flex-1"
+        ></div>
+      </div>
+    </div>
   );
 };
