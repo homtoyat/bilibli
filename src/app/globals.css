@@ -8,6 +8,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --animate-wiggle: wiggle 1s ease-in-out infinite;
+  --animate-updown: updown 1 0.5s ease-in-out;
   @keyframes wiggle {
     0%,
     100% {
@@ -15,6 +16,15 @@
     }
     50% {
       transform: rotate(-90deg);
+    }
+  }
+  @keyframes updown {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
     }
   }
 }

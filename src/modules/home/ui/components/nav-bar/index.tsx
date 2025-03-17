@@ -3,9 +3,6 @@ import { useState } from "react";
 import { MenuItem } from "../menu-item";
 import { SearchBar } from "../search-bar";
 
-import avatar from "@/../public/avatar.png";
-import logo from "@/../public/logo.png";
-import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   HoverCard,
@@ -13,201 +10,134 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { cn } from "@/lib/utils";
-import { Separator } from "@radix-ui/react-context-menu";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   BookAudioIcon,
   BookTextIcon,
-  ChevronDown,
   ClockIcon,
   CrownIcon,
   DownloadIcon,
   FanIcon,
   FileMusicIcon,
   LucideLightbulb,
-  MailIcon,
   SmileIcon,
   StarsIcon,
   UploadIcon,
   VideoIcon,
 } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { MyAvatar } from "../avatar";
+import { MailBoxWithDropdown } from "../mailbox";
 export const NavBar = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [avatarActive, setAvatarActive] = useState(false);
   return (
-    <div className="group relative flex h-32 min-w-[1024px] bg-[url(/banner.png)] bg-cover bg-center">
-      {/* <Image
-        src={banner}
-        alt={"banner"}
-        className="absolute -z-40 transition-all duration-2000 group-hover:scale-110"
-      ></Image> */}
-      <div className="flex h-16 w-full items-center">
-        <Link href={"/abcs"}>
-          <Image
-            src={logo}
-            alt={"lgo"}
-            width={80}
-            className={cn(
-              "absolute bottom-1/9 left-32 scale-140 animate-bounce cursor-pointer opacity-100 transition-all duration-700 hover:opacity-90",
-            )}
-          ></Image>
-        </Link>
-
-        <div className="flex gap-2 px-4">
-          <MenuItem>
-            <div className="flex">
-              <p>首页</p>
-              <ChevronDown
-                className="transition-all duration-700 hover:rotate-180"
-                size={20}
-              ></ChevronDown>
-            </div>
-          </MenuItem>
-          <MenuItem>番剧</MenuItem>
-          <MenuItem>游戏中心</MenuItem>
-          <MenuItem>会员购</MenuItem>
-          <MenuItem>漫画</MenuItem>
-          <MenuItem>赛事</MenuItem>
-          <MenuItem className="r flex flex-row justify-center">
-            <DownloadIcon className="size-4 hover:animate-bounce"></DownloadIcon>
-            下载客户端
-          </MenuItem>
-        </div>
-        <div className="flex-3">
-          <SearchBar></SearchBar>
-        </div>
-        <div className="flex gap-4 px-4 py-2">
-          <div className="group relative">
-            <Avatar
-              className={cn(
-                "group size-12 bg-red-300 ring-2 ring-neutral-100 transition-all duration-500",
-              )}
-              onMouseEnter={() => {
-                setAvatarActive(true);
-              }}
-            >
-              <Image src={avatar} alt={"avatar"}></Image>
-            </Avatar>
+    <AnimatePresence>
+      <motion.div className="group relative flex h-32 min-w-[1024px] bg-[url(/banner.png)] bg-cover bg-center">
+        <div className="flex h-16 w-full items-center">
+          <div className="flex gap-2 px-4">
+            <MenuItem>
+              <div className="flex">
+                <p className="hover:animate-updown">首页</p>
+              </div>
+            </MenuItem>
+            <MenuItem className="hover:animate-updown">番剧</MenuItem>
+            <MenuItem className="hover:animate-updown">游戏中心</MenuItem>
+            <MenuItem className="hover:animate-updown">会员购</MenuItem>
+            <MenuItem className="hover:animate-updown">漫画</MenuItem>
+            <MenuItem className="hover:animate-updown">赛事</MenuItem>
+            <MenuItem className="r hover:animate-updown flex flex-row justify-center">
+              <DownloadIcon className="size-4"></DownloadIcon>
+              下载客户端
+            </MenuItem>
           </div>
+          <div className="flex-3">
+            <SearchBar></SearchBar>
+          </div>
+          <div className="flex gap-4 px-4 py-2">
+            <MyAvatar></MyAvatar>
+            <MenuItem>
+              <div className="group relative flex flex-col items-center overflow-hidden">
+                <CrownIcon></CrownIcon>
+                <span className="hidden lg:inline">大会员</span>
+              </div>
+            </MenuItem>
 
-          <MenuItem>
-            <div className="flex flex-col">
-              <div className=""></div>
-              <Separator></Separator>
-            </div>
+            <MailBoxWithDropdown></MailBoxWithDropdown>
 
-            <HoverCard openDelay={50} closeDelay={100}>
-              <HoverCardTrigger asChild>
-                <div className="group relative flex flex-col items-center overflow-hidden">
-                  <CrownIcon></CrownIcon>
-                  <span className="hidden lg:inline">大会员</span>
-                </div>
-              </HoverCardTrigger>
-              <HoverCardContent
-                className="mx-0 w-90"
-                sideOffset={5}
-                alignOffset={100}
-                align="center"
-              >
-                <div className="flex flex-col gap-2 text-lg">
-                  <div className="mx-2 rounded p-2 text-neutral-500 transition-all hover:bg-neutral-200">
-                    回复我的
-                  </div>
-                  <div className="mx-2 rounded p-2 text-neutral-500 transition-all hover:bg-neutral-200">
-                    @我的
-                  </div>
-                  <div className="mx-2 flex items-center justify-between rounded p-2 text-neutral-500 transition-all hover:bg-neutral-200">
-                    <p className="inline-block">我的消息</p>
-                    <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                  </div>
-                  <div className="mx-2 rounded p-2 text-neutral-500 transition-all hover:bg-neutral-200">
-                    系统消息
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
-          </MenuItem>
-          <MenuItem>
-            <div className="relative flex flex-col items-center">
-              <div className="absolute top-0 right-0 size-2 translate-x-1 rounded-full bg-red-600"></div>
-              <MailIcon></MailIcon>
+            <MenuItem>
+              <div className="group flex flex-col">
+                <FanIcon
+                  className={cn("animate-wiggle", "flex items-center")}
+                ></FanIcon>
 
-              <span className="hidden lg:inline">消息</span>
-            </div>
-          </MenuItem>
-          <MenuItem>
-            <div className="group flex flex-col">
-              <FanIcon
-                className={cn("animate-wiggle", "flex items-center")}
-              ></FanIcon>
+                <span className="hidden lg:inline"> 动态</span>
+              </div>
+            </MenuItem>
+            <MenuItem>
+              <div className={cn("flex flex-col items-center")}>
+                <StarsIcon className="hover:animate-updown"></StarsIcon>
 
-              <span className="hidden lg:inline"> 动态</span>
-            </div>
-          </MenuItem>
-          <MenuItem>
-            <div className={cn("flex flex-col items-center")}>
-              <StarsIcon></StarsIcon>
+                <span className="hidden lg:inline"> 收藏</span>
+              </div>
+            </MenuItem>
+            <MenuItem>
+              <div className="flex flex-col items-center">
+                <ClockIcon className="hover:animate-updown"></ClockIcon>
 
-              <span className="hidden lg:inline"> 收藏</span>
-            </div>
-          </MenuItem>
-          <MenuItem>
-            <div className="flex flex-col items-center">
-              <ClockIcon></ClockIcon>
-
-              <span className="hidden lg:inline"> 历史</span>
-            </div>
-          </MenuItem>
-          <MenuItem>
-            <div className="flex flex-col items-center">
-              <LucideLightbulb></LucideLightbulb>
-              <span className="hidden lg:inline">创作中心</span>
-            </div>
-          </MenuItem>
-          <MenuItem>
-            <HoverCard openDelay={50} closeDelay={100}>
-              <HoverCardTrigger asChild>
-                <Button
-                  variant="destructive"
-                  className="bg-pink-500 hover:cursor-pointer"
+                <span className="hidden lg:inline"> 历史</span>
+              </div>
+            </MenuItem>
+            <MenuItem>
+              <div className="flex flex-col items-center">
+                <LucideLightbulb className="hover:animate-updown"></LucideLightbulb>
+                <span className="hidden lg:inline">创作中心</span>
+              </div>
+            </MenuItem>
+            <MenuItem>
+              <HoverCard openDelay={50} closeDelay={100}>
+                <HoverCardTrigger asChild>
+                  <Button
+                    variant="destructive"
+                    className="bg-pink-500 hover:cursor-pointer"
+                  >
+                    <UploadIcon className="hover:animate-updown"></UploadIcon>
+                    投稿
+                  </Button>
+                </HoverCardTrigger>
+                <HoverCardContent
+                  className="animate-accordion-down w-90"
+                  sideOffset={5}
+                  alignOffset={100}
+                  align="center"
                 >
-                  <UploadIcon></UploadIcon>投稿
-                </Button>
-              </HoverCardTrigger>
-              <HoverCardContent
-                className="animate-accordion-down w-90"
-                sideOffset={5}
-                alignOffset={100}
-                align="center"
-              >
-                <div className="flex justify-between text-neutral-500">
-                  <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
-                    <BookAudioIcon></BookAudioIcon>
-                    专栏投搞
+                  <div className="flex justify-between text-neutral-500">
+                    <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
+                      <BookAudioIcon></BookAudioIcon>
+                      专栏投搞
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
+                      <FileMusicIcon></FileMusicIcon>
+                      音频投搞
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
+                      <SmileIcon></SmileIcon>
+                      贴纸投搞
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
+                      <VideoIcon></VideoIcon>
+                      视频投搞
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
+                      <BookTextIcon></BookTextIcon>
+                      投搞管理
+                    </div>
                   </div>
-                  <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
-                    <FileMusicIcon></FileMusicIcon>
-                    音频投搞
-                  </div>
-                  <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
-                    <SmileIcon></SmileIcon>
-                    贴纸投搞
-                  </div>
-                  <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
-                    <VideoIcon></VideoIcon>
-                    视频投搞
-                  </div>
-                  <div className="flex flex-col items-center justify-center p-2 text-xs hover:rounded-lg hover:bg-neutral-300">
-                    <BookTextIcon></BookTextIcon>
-                    投搞管理
-                  </div>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
-          </MenuItem>
+                </HoverCardContent>
+              </HoverCard>
+            </MenuItem>
+          </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };

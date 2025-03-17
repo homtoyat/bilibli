@@ -37,21 +37,23 @@ export default function Page() {
 
       <div className="relative size-fit">
         <motion.div
-          layout="size"
+          layout
           className="flex h-[500px] w-[500px] flex-col items-center justify-center bg-neutral-600/50"
         >
           <motion.div
             layout
-            className="flex items-center gap-8 bg-neutral-800/80 p-12"
+            className="flex items-center gap-8 rounded-2xl bg-neutral-800/80 p-12"
             style={{
               flexDirection: open ? "column" : "row",
               padding: open ? "20px" : "8px",
             }}
-            animate={{
-              borderRadius: open ? 20 : 4,
-            }}
           >
-            <motion.div layout="position" animate={{ scale: open ? 2 : 1 }}>
+            <motion.div
+              layout
+              style={{
+                scale: open ? 1.9 : 1,
+              }}
+            >
               <LoaderPinwheelIcon className="animate-spin"></LoaderPinwheelIcon>
             </motion.div>
             <div className="flex flex-col">
