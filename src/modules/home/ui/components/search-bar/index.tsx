@@ -1,16 +1,21 @@
 "use client";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 export const SearchBar = () => {
   const [active, setActive] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => setActive(false));
   return (
     <div className="relative flex h-8 flex-3 flex-col p-2">
       <div
         className={cn(
-          "group absolute left-0 w-full bg-transparent pt-2",
+          "absolute left-0 w-full bg-transparent pt-2",
           active && "h-100 rounded bg-white shadow-sm",
         )}
+        tabIndex={333}
+        ref={ref}
       >
         <div
           className={cn(
@@ -29,7 +34,7 @@ export const SearchBar = () => {
           onMouseEnter={() => setActive(true)}
           onMouseLeave={() => setActive(false)}
           onClick={() => setActive(true)}
-          className="flex-1"
+          className="flex flex-1 items-end justify-end"
         ></div>
       </div>
     </div>
