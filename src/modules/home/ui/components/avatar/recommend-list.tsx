@@ -8,7 +8,7 @@ import {
   Wallet2Icon,
 } from "lucide-react";
 import { useState } from "react";
-export const RecommendList = ({ className, show, setShow }) => {
+export const RecommendList = ({ className, show }) => {
   if (!show) {
     return;
   }
@@ -34,7 +34,7 @@ export const RecommendList = ({ className, show, setShow }) => {
   );
 };
 
-export const RecommendMenuEntry = ({ className }) => {
+export const RecommendMenuEntry = ({}) => {
   const [show, setShow] = useState(false);
   return (
     <>

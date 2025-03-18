@@ -5,7 +5,7 @@ import { useState } from "react";
 import { RecommendMenuEntry } from "./recommend-list";
 export const MyAvatar = () => {
   const [enter, setEnter] = useState(false);
-  const [enterDetail, setEnterDetail] = useState(false);
+  const [] = useState(false);
   return (
     <motion.div
       variants={{
@@ -38,7 +38,7 @@ export const MyAvatar = () => {
             </div>
           </div>
         </div>
-        <RecommendMenuEntry className={undefined}></RecommendMenuEntry>
+        <RecommendMenuEntry></RecommendMenuEntry>
         <Separator className="w-full"></Separator>
         <div className="flex gap-4 px-2 py-2 hover:bg-neutral-300">
           <LogOutIcon></LogOutIcon>退出登录
