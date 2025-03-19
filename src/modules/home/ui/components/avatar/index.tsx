@@ -1,10 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
-import { ChevronRightIcon, LogOutIcon, UserIcon } from "lucide-react";
+import { LogOutIcon } from "lucide-react";
 import { useState } from "react";
 import { RecommendMenuEntry } from "./recommend-list";
 export const MyAvatar = () => {
   const [enter, setEnter] = useState(false);
+  const [showRecommend, setShowRecommend] = useState(false);
   const [] = useState(false);
   return (
     <motion.div
@@ -12,37 +13,63 @@ export const MyAvatar = () => {
         enter: {},
         leave: {},
       }}
-      className="relative flex items-center"
+      className="relative flex flex-col items-center justify-end"
       animate={enter ? "enter" : "leave"}
       initial="leave"
       exit="leave"
       transition={{ type: "spring" }}
     >
       <motion.div
-        key="1"
-        className="absolute top-full left-1/2 mt-2 flex h-90 w-52 -translate-x-1/2 translate-y-5 flex-col rounded bg-white shadow"
+        className="absolute top-full left-1/2 mt-2 flex h-90 w-52 -translate-x-1/2 translate-y-5 flex-col justify-end rounded bg-white shadow"
         onMouseEnter={() => setEnter(true)}
         onMouseLeave={() => setEnter(false)}
         variants={{
           enter: { opacity: 1, y: 0 },
-          leave: { opacity: 0, y: 10, transition: { duration: 0.5 } },
+          leave: { opacity: 0, y: 20 },
         }}
+        animate={enter ? "enter" : "leave"}
+        initial="leave"
+        transition={{ staggerChildren: 0.1, duration: 0.5 }}
       >
-        <div className="flex h-full w-full items-end">
-          <div className="flex w-full cursor-pointer flex-col text-neutral-700">
-            <div className="flex w-full justify-between p-2 hover:bg-neutral-700/10 hover:text-blue-400">
-              <div className="flex">
-                <UserIcon></UserIcon>个人中心
-              </div>
-              <ChevronRightIcon></ChevronRightIcon>
-            </div>
-          </div>
-        </div>
-        <RecommendMenuEntry></RecommendMenuEntry>
-        <Separator className="w-full"></Separator>
-        <div className="flex gap-4 px-2 py-2 hover:bg-neutral-300">
+        <motion.div
+          variants={{
+            enter: { opacity: 1, x: 0 },
+            leave: { opacity: 0, x: 20 },
+          }}
+        >
+          <RecommendMenuEntry
+            showRecommend={showRecommend}
+            setShowRecommend={setShowRecommend}
+          ></RecommendMenuEntry>
+        </motion.div>
+        <motion.div
+          variants={{
+            enter: { opacity: 1, x: 0 },
+            leave: { opacity: 0, x: 20 },
+          }}
+        >
+          <RecommendMenuEntry
+            showRecommend={showRecommend}
+            setShowRecommend={setShowRecommend}
+          ></RecommendMenuEntry>
+        </motion.div>
+        <motion.div
+          variants={{
+            enter: { opacity: 1, x: 0 },
+            leave: { opacity: 0, x: 0 },
+          }}
+        >
+          <Separator className="w-full"></Separator>
+        </motion.div>
+        <motion.div
+          className="flex gap-4 px-2 py-2 hover:bg-neutral-300"
+          variants={{
+            enter: { opacity: 1, x: 0 },
+            leave: { opacity: 0, x: 20 },
+          }}
+        >
           <LogOutIcon></LogOutIcon>退出登录
-        </div>
+        </motion.div>
       </motion.div>
 
       <motion.div

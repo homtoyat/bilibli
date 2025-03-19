@@ -11,7 +11,7 @@ const list = [
 export default function Motion() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="relative h-screen w-60 w-full bg-neutral-900 py-4 text-neutral-50">
+    <div className="relative h-screen w-60 bg-neutral-900 py-4 text-neutral-50">
       <button
         className="flex cursor-pointer gap-4 hover:animate-pulse"
         onMouseEnter={() => {
