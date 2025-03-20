@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { LogOutIcon } from "lucide-react";
 import { useState } from "react";
 import { RecommendMenuEntry } from "./recommend-list";
@@ -19,58 +19,52 @@ export const MyAvatar = () => {
       exit="leave"
       transition={{ type: "spring" }}
     >
-      <motion.div
-        className="absolute top-full left-1/2 mt-2 flex h-90 w-52 -translate-x-1/2 translate-y-5 flex-col justify-end rounded bg-white shadow"
-        onMouseEnter={() => setEnter(true)}
-        onMouseLeave={() => setEnter(false)}
-        variants={{
-          enter: { opacity: 1, y: 0 },
-          leave: { opacity: 0, y: 20 },
-        }}
-        animate={enter ? "enter" : "leave"}
-        initial="leave"
-        transition={{ staggerChildren: 0.1, duration: 0.5 }}
-      >
-        <motion.div
-          variants={{
-            enter: { opacity: 1, x: 0 },
-            leave: { opacity: 0, x: 20 },
-          }}
-        >
-          <RecommendMenuEntry
-            showRecommend={showRecommend}
-            setShowRecommend={setShowRecommend}
-          ></RecommendMenuEntry>
-        </motion.div>
-        <motion.div
-          variants={{
-            enter: { opacity: 1, x: 0 },
-            leave: { opacity: 0, x: 20 },
-          }}
-        >
-          <RecommendMenuEntry
-            showRecommend={showRecommend}
-            setShowRecommend={setShowRecommend}
-          ></RecommendMenuEntry>
-        </motion.div>
-        <motion.div
-          variants={{
-            enter: { opacity: 1, x: 0 },
-            leave: { opacity: 0, x: 0 },
-          }}
-        >
-          <Separator className="w-full"></Separator>
-        </motion.div>
-        <motion.div
-          className="flex gap-4 px-2 py-2 hover:bg-neutral-300"
-          variants={{
-            enter: { opacity: 1, x: 0 },
-            leave: { opacity: 0, x: 20 },
-          }}
-        >
-          <LogOutIcon></LogOutIcon>退出登录
-        </motion.div>
-      </motion.div>
+      <AnimatePresence>
+        {enter && (
+          <motion.div
+            className="absolute top-full left-1/2 mt-2 flex h-90 w-52 -translate-x-1/2 translate-y-5 flex-col justify-end rounded border-[1px] border-neutral-500/10 bg-white shadow"
+            onMouseEnter={() => setEnter(true)}
+            onMouseLeave={() => setEnter(false)}
+            variants={{
+              enter: { opacity: 1, y: 0 },
+              leave: { opacity: 0, y: 0 },
+            }}
+            animate={enter ? "enter" : "leave"}
+            initial="leave"
+            exit="leave"
+            transition={{ staggerChildren: 0.1, duration: 0.5 }}
+          >
+            <motion.div
+              variants={{
+                enter: { opacity: 1, x: 0 },
+                leave: { opacity: 0, x: 20 },
+              }}
+            >
+              <RecommendMenuEntry
+                showRecommend={showRecommend}
+                setShowRecommend={setShowRecommend}
+              ></RecommendMenuEntry>
+            </motion.div>
+            <motion.div
+              variants={{
+                enter: { opacity: 1, x: 0 },
+                leave: { opacity: 0, x: 0 },
+              }}
+            >
+              <Separator className="w-full"></Separator>
+            </motion.div>
+            <motion.div
+              className="flex gap-4 px-2 py-2 hover:bg-neutral-300"
+              variants={{
+                enter: { opacity: 1, x: 0 },
+                leave: { opacity: 0, x: 20 },
+              }}
+            >
+              <LogOutIcon></LogOutIcon>退出登录
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <motion.div
         onMouseEnter={() => {
@@ -87,13 +81,15 @@ export const MyAvatar = () => {
           variants={{
             enter: {
               y: "40px",
-              x: "-15px",
+              x: "0px",
               scale: 2,
+              transition: { duration: 0.3 },
             },
             leave: {
               y: "0px",
               scale: 1,
               x: "0px",
+              transition: { duration: 0.5 },
             },
           }}
         ></motion.img>

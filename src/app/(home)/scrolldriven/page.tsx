@@ -18,7 +18,6 @@ export default function Page() {
   // });
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   useMotionValueEvent(scrollY, "change", (y) => {
-    debugger;
     setY(y);
   });
   return (

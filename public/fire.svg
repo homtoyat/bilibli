@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" 
+     fill="none" 
+     stroke="currentColor" 
+     stroke-width="2" 
+     stroke-linecap="round" 
+     stroke-linejoin="round"
+     class="w-6 h-6"> <!-- 可通过 class 调整大小 -->
+  
+  <!-- 火焰主体 -->
+  <path d="M12 22c-3.04 0-5.5-2.46-5.5-5.5 0-2.13 1.5-3.88 3.5-5.12V9c0-1.1.9-2 2-2s2 .9 2 2v2.38c2 1.24 3.5 2.99 3.5 5.12 0 3.04-2.46 5.5-5.5 5.5z"/>
+  
+  <!-- 火焰外焰细节 -->
+  <path d="M8.5 13.5c-1.1 0-2-.9-2-2s.9-2 2-2"/>
+  <path d="M15.5 13.5c1.1 0 2-.9 2-2s-.9-2-2-2"/>
+
+</svg>

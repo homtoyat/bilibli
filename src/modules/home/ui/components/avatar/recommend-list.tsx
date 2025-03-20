@@ -16,7 +16,7 @@ export const RecommendList = ({ className, show }) => {
       {show && (
         <motion.div className={className}>
           <motion.ul
-            className="bg-neutral-50 p-2 shadow"
+            className="rounded-md bg-neutral-50 p-2 shadow"
             variants={{
               show: {
                 transition: {

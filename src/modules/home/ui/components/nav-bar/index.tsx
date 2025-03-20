@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MenuItem } from "../menu-item";
 import { SearchBar } from "../search-bar";
 
@@ -10,7 +10,12 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import {
   BookAudioIcon,
   BookTextIcon,
@@ -27,18 +32,31 @@ import {
 } from "lucide-react";
 import { MyAvatar } from "../avatar";
 import { MailBoxWithDropdown } from "../mailbox";
+import { StickyBar } from "./sticky-bar";
 export const NavBar = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const navBar = useRef(null);
+  const [xVlaue, setXVlaue] = useState(0);
+  const { scrollY } = useScroll({ target: navBar });
+  const scaleY = useTransform(scrollY, [0, 25, 26, 40], [0, 0, 1, 1]);
+
+  const value = useMotionValueEvent(scaleY, "change", (v) => setXVlaue(v));
   const [avatarActive, setAvatarActive] = useState(false);
   return (
-    <AnimatePresence>
+    <>
+      <motion.div
+        key={3}
+        style={{ scaleY: scaleY }}
+        className="fixed top-0 z-10 h-16 w-screen origin-top bg-white shadow"
+      >
+        <StickyBar></StickyBar>
+      </motion.div>
       <motion.div className="group relative flex h-32 min-w-[1024px] bg-[url(/banner.png)] bg-cover bg-center">
         <div className="flex h-16 w-full items-center">
           <div className="flex gap-2 px-4">
             <MenuItem>
-              <div className="flex">
+              <motion.div className="flex" ref={navBar}>
                 <p className="hover:animate-updown">首页</p>
-              </div>
+              </motion.div>
             </MenuItem>
             <MenuItem className="hover:animate-updown">番剧</MenuItem>
             <MenuItem className="hover:animate-updown">游戏中心</MenuItem>
@@ -65,12 +83,14 @@ export const NavBar = () => {
             <MailBoxWithDropdown></MailBoxWithDropdown>
 
             <MenuItem>
-              <div className="group flex flex-col">
+              <div className="group relative flex flex-col">
                 <FanIcon
                   className={cn("animate-wiggle", "flex items-center")}
                 ></FanIcon>
-
                 <span className="hidden lg:inline"> 动态</span>
+                <div className="absolute top-0 right-0 flex w-fit -translate-y-1/2 items-center justify-center rounded-full bg-red-600 text-white">
+                  50
+                </div>
               </div>
             </MenuItem>
             <MenuItem>
@@ -138,6 +158,6 @@ export const NavBar = () => {
           </div>
         </div>
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 };

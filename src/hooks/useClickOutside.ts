@@ -11,7 +11,6 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
     const listener = (event: MouseEvent) => {
       const el = ref?.current;
       const activeElement = document.activeElement;
-      debugger;
       if (!el) {
         handler(event);
       }
