@@ -9,7 +9,7 @@ export function Carousel({ items }) {
   };
 
   return (
-    <div className="relative h-96 w-full overflow-hidden">
+    <div className="relative h-full w-full">
       <AnimatePresence initial={false} custom={dir}>
         <motion.div
           key={page}

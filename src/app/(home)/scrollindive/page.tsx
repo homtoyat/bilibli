@@ -20,7 +20,7 @@ export default function Page() {
   useMotionValueEvent(scaleDivX, "change", (divx) => setDivProgress(divx));
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
   useMotionValueEvent(scrollY, "change", (y) => {
-    debugger;
+    // debugger;
     setY(y);
   });
   return (

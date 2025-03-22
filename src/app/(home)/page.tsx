@@ -1,54 +1,88 @@
 "use client";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Carousel } from "@/modules/home/Carousel";
 import { SubCategory } from "@/modules/home/SubCategory";
 import { NavBar } from "@/modules/home/ui/components/nav-bar";
-import { motion } from "framer-motion";
-import { DotIcon, MoreVertical } from "lucide-react";
+import { VideoItem } from "@/modules/home/VideoItem";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 export default function Page() {
+  const { scrollYProgress } = useScroll({});
+  const [progressState, setP] = useState(0);
+  const videoContainer = useRef<HTMLDivElement>(null);
+  useMotionValueEvent(scrollYProgress, "change", (_p) => setP(_p));
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [items, setItems] = useState([{ id: 1, text: "初始项" }]);
+  // 带防抖的滚动处理函数
+  const handleScroll = async (latestValue: number) => {
+    console.log({ latestValue });
+    if (isLoading || latestValue < 0.9) {
+      setIsLoading(false);
+      return;
+    }
+    debugger;
+    setIsLoading(true);
+    const list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+      return { id: Math.random() * 1000, text: `${new Date()}` };
+    });
+    const sleepfunc = new Promise((r) => setTimeout(r, 2000));
+    await sleepfunc;
+    console.log(new Date());
+    setItems((__prevhandleScroll) => [...__prevhandleScroll, ...list]);
+
+    setIsLoading(false);
+    scrollYProgress.set(0); // 重置进度值触发更新
+  };
+
+  // 监听滚动事件
+  useEffect(() => {
+    // debugger;
+    if (isLoading) {
+      console.log("正在加载中。。。");
+      return;
+    }
+    handleScroll(progressState);
+  }, [isLoading, progressState]);
   return (
     <div className="bg-wh min-w[1080px] mx-auto h-lvh max-w-[2560px]">
       <motion.main className="w-full">
         <NavBar></NavBar>
-        <div className="g-neutral-50/30 top-120 h-[330vh] w-full px-24">
+        <div className="g-neutral-50/30 top-120 min-h-screen w-full px-24">
           <div className="relative h-full w-full">
             <SubCategory></SubCategory>
-            <div className="grid grid-cols-5 gap-4 pt-4">
-              <div className="col-span-2 row-span-2 overflow-hidden rounded bg-amber-200 shadow">
+            <div className="grid grid-cols-5 gap-4 pt-4" ref={videoContainer}>
+              <div className="col-span-2 row-span-2 overflow-clip rounded-xl shadow">
                 <Carousel
                   items={["slider/1.png", "slider/2.png", "slider/0.png"]}
                 ></Carousel>
               </div>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => {
                 return (
-                  <div
-                    key={i}
-                    className="flex h-45 w-full cursor-pointer flex-col justify-between rounded-2xl px-1 shadow-xs"
-                  >
-                    <img
-                      src={`/slider/${i % 3}.png`}
-                      className="h-[130px] rounded-lg object-cover object-top"
-                    ></img>
-                    <div>
-                      <div className="flex justify-between">
-                        <span className="inline-block font-extrabold">
-                          多少人巴不得大学生就业难
-                        </span>
-                        <button className="cursor-pointer">
-                          <MoreVertical className="size-4 text-xs text-neutral-400 hover:text-neutral-500"></MoreVertical>
-                        </button>
-                      </div>
-                      <div className="group flex cursor-pointer items-center gap-2 pb-1">
-                        <span className="rounded-md bg-amber-100 text-amber-400 group-hover:text-blue-500">
-                          2万点赞
-                        </span>
-                        <div className="flex text-sm text-neutral-400 group-hover:text-blue-500">
-                          躺平规划师<DotIcon></DotIcon> 2-14
-                        </div>
-                      </div>
-                    </div>
+                  <div key={i}>
+                    <VideoItem index={i}></VideoItem>;
                   </div>
                 );
               })}
+
+              {items.map((item, i) => (
+                <div key={i}>
+                  <VideoItem index={i}></VideoItem>
+                </div>
+              ))}
+              {isLoading &&
+                [0, 1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="w-h-full flex h-60 flex-col justify-between"
+                  >
+                    <Skeleton className="h-[150px] w-full"></Skeleton>
+                    <div className="flex h-[60px] flex-col gap-4">
+                      <Skeleton className="h-[30px]"></Skeleton>
+                      <Skeleton className="h-[15px]"></Skeleton>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
