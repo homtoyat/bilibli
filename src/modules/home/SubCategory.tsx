@@ -65,23 +65,23 @@ export const SubCategory = () => {
         })}
       </div>
       <div className="col-span-2 grid grid-cols-3 place-items-center gap-0 text-neutral-700/90">
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
           <BookIcon></BookIcon>专栏
         </div>
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
           <FileBadgeIcon></FileBadgeIcon>活动
         </div>
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
-          <VideoIcon></VideoIcon>社区活动
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
+          <VideoIcon></VideoIcon>社区
         </div>
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
           <Music3Icon></Music3Icon> 直播
         </div>
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
           <FlagIcon></FlagIcon> 课堂
         </div>
-        <div className="flex cursor-pointer gap-1 text-xl font-semibold hover:text-blue-400">
-          <SlidersHorizontalIcon></SlidersHorizontalIcon> 新歌热榜
+        <div className="flex cursor-pointer gap-1 font-semibold hover:text-blue-400">
+          <SlidersHorizontalIcon></SlidersHorizontalIcon> 热榜
         </div>
       </div>
     </div>
