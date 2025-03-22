@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { MenuItem } from "../menu-item";
 import { SearchBar } from "../search-bar";
 
@@ -10,12 +10,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { cn } from "@/lib/utils";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   BookAudioIcon,
   BookTextIcon,
@@ -35,12 +30,12 @@ import { MailBoxWithDropdown } from "../mailbox";
 import { StickyBar } from "./sticky-bar";
 export const NavBar = () => {
   const navBar = useRef(null);
-  const [xVlaue, setXVlaue] = useState(0);
+  // const [xVlaue, setXVlaue] = useState(0);
   const { scrollY } = useScroll({ target: navBar });
   const scaleY = useTransform(scrollY, [0, 25, 26, 40], [0, 0, 1, 1]);
 
-  const value = useMotionValueEvent(scaleY, "change", (v) => setXVlaue(v));
-  const [avatarActive, setAvatarActive] = useState(false);
+  // const value = useMotionValueEvent(scaleY, "change", (v) => setXVlaue(v));
+  // const [avatarActive, setAvatarActive] = useState(false);
   return (
     <>
       <motion.div

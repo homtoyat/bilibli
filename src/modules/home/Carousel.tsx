@@ -1,7 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-export function Carousel({ items }) {
+interface Props {
+  items: string[];
+}
+export function Carousel({ items }: Props) {
   const [[page, dir], setPage] = useState([0, 0]); // [当前页, 滑动方向]
   const [isAnimating, setIsAnimating] = useState(false);
   const paginate = (newDir: number) => {
@@ -28,10 +31,11 @@ export function Carousel({ items }) {
           }}
           onAnimationEndCapture={() => setIsAnimating(false)}
         >
-          {/* 内容容器 */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={items[page % items.length]}
             className="h-full w-full object-cover"
+            alt="ddd"
           />
         </motion.div>
       </AnimatePresence>

@@ -1,9 +1,13 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { MailIcon } from "lucide-react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { MenuItem } from "../menu-item";
-const MsgDetail = ({ active, setActive }) => {
+interface Props {
+  active: boolean;
+  setActive: Dispatch<SetStateAction<boolean>>;
+}
+const MsgDetail = ({ active, setActive }: Props) => {
   return (
     <AnimatePresence>
       {active && (

@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 export default function Page() {
   const [x, setX] = useState(0);
-  const { scrollYProgress, scrollXProgress, scrollX, scrollY } = useScroll();
+  const { scrollXProgress, scrollX } = useScroll();
   const scaleX = useSpring(scrollXProgress);
   useMotionValueEvent(scrollX, "change", (x) => setX(x));
   return (

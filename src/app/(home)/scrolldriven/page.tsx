@@ -9,9 +9,9 @@ import {
 import { useRef, useState } from "react";
 export default function Page() {
   const ref = useRef(null);
-  const [x, setX] = useState(0);
+  const [x] = useState(0);
   const [y, setY] = useState(0);
-  const { scrollXProgress, scrollY, scrollYProgress, scrollX } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   // useMotionValueEvent(scrollX, "change", (x) => {
   //   debugger;
   //   setX(x);

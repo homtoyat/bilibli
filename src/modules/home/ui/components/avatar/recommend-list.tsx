@@ -7,7 +7,13 @@ import {
   VideoIcon,
   Wallet2Icon,
 } from "lucide-react";
-export const RecommendList = ({ className, show }) => {
+import { Dispatch, SetStateAction } from "react";
+
+interface Props {
+  className: string;
+  show: boolean;
+}
+export const RecommendList = ({ className, show }: Props) => {
   if (!show) {
     return;
   }
@@ -74,10 +80,14 @@ export const RecommendList = ({ className, show }) => {
   );
 };
 
+interface Props {
+  showRecommend: boolean;
+  setShowRecommend: Dispatch<SetStateAction<boolean>>;
+}
 export const RecommendMenuEntry = ({
   showRecommend: show,
   setShowRecommend: setShow,
-}) => {
+}: Props) => {
   return (
     <motion.div
       className="relative flex w-full justify-between p-2 hover:bg-neutral-700/10 hover:text-blue-400"
@@ -102,6 +112,8 @@ export const RecommendMenuEntry = ({
       <RecommendList
         show={show}
         className={"absolute top-0 right-0 translate-x-full -translate-y-1/2"}
+        showRecommend={false}
+        setShowRecommend={() => setShow(true)}
       ></RecommendList>
     </motion.div>
   );

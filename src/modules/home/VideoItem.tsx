@@ -1,11 +1,16 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { DotIcon, MoreVertical } from "lucide-react";
 
-export const VideoItem = ({ index }) => {
+interface Props {
+  index: number;
+}
+export const VideoItem = ({ index }: Props) => {
   return (
     <div
       key={index}
       className="flex h-60 w-full cursor-pointer flex-col justify-between rounded-2xl px-1 shadow-xs"
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`/slider/${index % 3}.png`}
         className="h-[150px] rounded-lg object-cover object-top"

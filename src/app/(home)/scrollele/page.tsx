@@ -7,9 +7,10 @@ import {
 } from "framer-motion";
 import { useRef, useState } from "react";
 export default function Page() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [x, setX] = useState(0);
   const ref = useRef(null);
-  const { scrollYProgress, scrollXProgress, scrollX, scrollY } = useScroll({
+  const { scrollXProgress, scrollX } = useScroll({
     container: ref,
   });
   const scaleX = useSpring(scrollXProgress);

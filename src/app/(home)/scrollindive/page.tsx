@@ -9,10 +9,10 @@ import {
 import { useRef, useState } from "react";
 export default function Page() {
   const ref = useRef(null);
-  const [x, setX] = useState(0);
+  const [x] = useState(0);
   const [y, setY] = useState(0);
   const [divProgress, setDivProgress] = useState(0);
-  const { scrollXProgress, scrollY, scrollYProgress, scrollX } = useScroll({});
+  const { scrollY, scrollYProgress } = useScroll({});
   const { scrollXProgress: scaleDivX } = useScroll({
     container: ref,
     axis: "y",

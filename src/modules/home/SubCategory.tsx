@@ -14,6 +14,7 @@ export const SubCategory = () => {
       <div className="col-span-1 flex items-center justify-center">
         <div className="flex items-center justify-center gap-4">
           <div className="flex flex-col items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/banner.png"
               className="animate-wiggle size-12 rounded-full object-cover object-center" // ✅ 关键类

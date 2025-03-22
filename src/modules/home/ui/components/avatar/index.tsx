@@ -43,6 +43,8 @@ export const MyAvatar = () => {
               <RecommendMenuEntry
                 showRecommend={showRecommend}
                 setShowRecommend={setShowRecommend}
+                className={""}
+                show={false}
               ></RecommendMenuEntry>
             </motion.div>
             <motion.div

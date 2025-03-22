@@ -2,7 +2,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 export default function Page() {
-  const [sent, setSent] = useState(false);
   const [open, setOpen] = useState(true);
 
   return (
