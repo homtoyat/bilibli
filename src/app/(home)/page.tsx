@@ -60,7 +60,7 @@ export default function Page() {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => {
                 return (
                   <div key={i}>
-                    <VideoItem index={i}></VideoItem>;
+                    <VideoItem index={i}></VideoItem>
                   </div>
                 );
               })}
