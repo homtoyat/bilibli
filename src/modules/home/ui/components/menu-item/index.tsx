@@ -5,11 +5,11 @@ interface Props {
   children: React.ReactNode;
   className?: string;
 }
-export const MenuItem = ({ children, className = "" }: Props) => {
+export const MenuItem = ({ children, className = "text-white" }: Props) => {
   return (
     <div
       className={cn(
-        "flex pt-4 text-sm font-semibold text-white transition-all hover:cursor-pointer",
+        "flex pt-4 text-sm font-semibold transition-all hover:cursor-pointer",
         className,
       )}
     >

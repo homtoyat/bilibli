@@ -13,7 +13,7 @@ export const MyAvatar = () => {
         enter: {},
         leave: {},
       }}
-      className="relative z-100 flex flex-col items-center justify-end"
+      className="relative z-100 flex flex-col items-center justify-center pt-4"
       animate={enter ? "enter" : "leave"}
       initial="leave"
       exit="leave"

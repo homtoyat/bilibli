@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { MailIcon } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -49,12 +50,17 @@ const MsgDetail = ({ active, setActive }: Props) => {
     </AnimatePresence>
   );
 };
-const MailBoxWithDropdown = () => {
+interface MailBoxWithDropdownProps {
+  textColor?: string;
+}
+const MailBoxWithDropdown = ({
+  textColor = "text-white",
+}: MailBoxWithDropdownProps) => {
   const [active, setActive] = useState(false);
   return (
     <MenuItem>
       <div
-        className="group relative flex flex-col items-center"
+        className={cn("group relative flex flex-col items-center", textColor)}
         onClick={() => setActive(true)}
         onMouseEnter={() => setActive(true)}
         onMouseLeave={() => setActive(false)}
