@@ -22,7 +22,7 @@ export default function Page() {
       <div className="flex w-screen justify-center">
         <WhiteNavBar></WhiteNavBar>
 
-        <div className="relative top-20 h-[3000px] w-full max-w-[2560px] min-w-[1080px] border-8 border-blue-800 bg-white shadow">
+        <div className="relative top-20 h-[3000px] w-full max-w-[2560px] min-w-[1080px] bg-white shadow">
           <div className="flex w-full gap-4 px-26 py-8">
             <div className="min-h-[2048px] w-7/10">
               <div>
