@@ -114,7 +114,6 @@ export default function Page() {
                     drilldown: {},
                   }}
                   animate={showSubsetList ? "drilldown" : "rollup"}
-                  transition={{ duration: 3 }}
                   initial="rollup"
                 >
                   <motion.div className="flex w-full justify-between rounded-md bg-neutral-300/30 px-2 py-2">
@@ -159,6 +158,7 @@ export default function Page() {
                       rollup: { height: 0 },
                       drilldown: { height: 200 },
                     }}
+                    transition={{ duration: 0.1, staggerChildren: 0.05 }}
                   >
                     <div className="flex text-neutral-500/50">
                       <div className="flex-1">时间</div>
@@ -181,7 +181,13 @@ export default function Page() {
                         "死老太波是疯狂了吗13",
                       ].map((item) => {
                         return (
-                          <div key={item}>
+                          <motion.div
+                            key={item}
+                            variants={{
+                              rollup: { x: -40, opacity: 0 },
+                              drilldown: { x: 0, opacity: 1 },
+                            }}
+                          >
                             <div className="flex gap-8 text-neutral-700">
                               <div className="flex">00:05</div>
                               <div className="w-[39px] flex-1 justify-start truncate">
@@ -189,7 +195,7 @@ export default function Page() {
                               </div>
                               <div className="flex justify-end">21:31:05</div>
                             </div>
-                          </div>
+                          </motion.div>
                         );
                       })}
                     </div>
