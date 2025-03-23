@@ -155,8 +155,14 @@ export default function Page() {
                   <motion.div
                     className="overflow-y-auto pr-2"
                     variants={{
-                      rollup: { height: 0 },
-                      drilldown: { height: 200 },
+                      rollup: {
+                        height: 0,
+                        transition: { duration: 0.1, staggerChildren: -0.05 },
+                      },
+                      drilldown: {
+                        height: 200,
+                        transition: { duration: 0.1, staggerChildren: 0.05 },
+                      },
                     }}
                     transition={{ duration: 0.1, staggerChildren: 0.05 }}
                   >
