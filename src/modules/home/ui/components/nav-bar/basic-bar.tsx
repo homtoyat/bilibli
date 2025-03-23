@@ -24,7 +24,6 @@ import {
   UploadIcon,
   VideoIcon,
 } from "lucide-react";
-import { useRef } from "react";
 import { MyAvatar } from "../avatar";
 import { MailBoxWithDropdown } from "../mailbox";
 interface Props {
@@ -35,7 +34,6 @@ export const Basicbar = ({
   className,
   textColor = "text-neutral-900",
 }: Props) => {
-  const navBar = useRef(null);
   return (
     <>
       <motion.div

@@ -13,12 +13,9 @@ import {
   TextIcon,
   TvIcon,
 } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
-interface Props {
-  children: ReactNode;
-}
-export default function Layout({ children }: Props) {
+export default function Page() {
   const [showSubsetList, setShowSubsetList] = useState(false);
   return (
     <div className="relative h-fit min-h-screen w-screen bg-neutral-200/50">

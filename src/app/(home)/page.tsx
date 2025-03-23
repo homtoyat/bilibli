@@ -43,7 +43,7 @@ export default function Page() {
       return;
     }
     handleScroll(progressState);
-  }, [isLoading, progressState]);
+  }, [isLoading, progressState, handleScroll]);
   return (
     <div className="bg-wh min-w[1080px] mx-auto h-lvh max-w-[2560px]">
       <motion.main className="w-full">
