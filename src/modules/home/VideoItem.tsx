@@ -1,14 +1,16 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { DotIcon, MoreVertical } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   index: number;
 }
 export const VideoItem = ({ index }: Props) => {
   return (
-    <div
+    <Link
       key={index}
       className="flex h-60 w-full cursor-pointer flex-col justify-between rounded-2xl px-1 shadow-xs"
+      href={"/video"}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -33,6 +35,6 @@ export const VideoItem = ({ index }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
