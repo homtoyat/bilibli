@@ -82,8 +82,8 @@ export default function Page() {
             </div>
 
             <div className="flex min-h-[2048px] flex-col justify-between">
-              <div className="sticky -top-130">
-                <div className="gap-2 py-4">
+              <div className="sticky -top-130 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
                   <div className="flex size-10 items-center justify-center rounded-full bg-amber-600 bg-[url(/banner.png)] text-white">
                     HT
                   </div>
@@ -97,15 +97,15 @@ export default function Page() {
                     <div className="font-mono text-xs text-neutral-400">
                       商务微信：Amber201306 （添加时请说明具体来意！）
                     </div>
-                    <div className="flex justify-between pr-4">
-                      <button className="flex items-center gap-[1px] rounded border border-red-500 px-2 py-1 text-xs text-red-500 outline-0">
-                        <Plug className="size-4"></Plug>充电
-                      </button>
-                      <button className="flex items-center rounded bg-sky-500 p-1 px-12 text-xs text-white">
-                        <PlusIcon className="size-3"></PlusIcon>关注 115.6万
-                      </button>
-                    </div>
                   </div>
+                </div>
+                <div className="flex justify-between pr-4">
+                  <button className="flex cursor-pointer items-center gap-[1px] rounded border border-red-500 px-2 py-1 text-xs text-red-500 outline-0 hover:bg-red-500 hover:text-white">
+                    <Plug className="size-4"></Plug>充电
+                  </button>
+                  <button className="flex cursor-pointer items-center rounded bg-sky-500 p-1 px-12 text-xs text-white hover:bg-sky-600">
+                    <PlusIcon className="size-3"></PlusIcon>关注 115.6万
+                  </button>
                 </div>
                 <motion.div
                   className=""
