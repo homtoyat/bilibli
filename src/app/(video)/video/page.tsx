@@ -1,22 +1,34 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { WhiteNavBar } from "@/modules/home/ui/components/nav-bar/white-bar";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  AtSign,
   ChevronDown,
   ChevronRight,
   CircleSlashIcon,
+  FileVideoIcon,
+  ImageIcon,
   MailIcon,
+  MenuIcon,
+  MoreVertical,
   MoreVerticalIcon,
+  NotebookPenIcon,
   PlaySquareIcon,
   Plug,
   PlusIcon,
+  Share2Icon,
+  SmileIcon,
+  StarIcon,
   TextIcon,
+  TriangleAlertIcon,
   TvIcon,
 } from "lucide-react";
 import { useState } from "react";
 
 export default function Page() {
   const [showSubsetList, setShowSubsetList] = useState(false);
+  const [star, setStar] = useState({ star: false, count: 123 });
   return (
     <div className="relative h-fit min-h-screen w-screen bg-neutral-200/50">
       <div className="flex w-screen justify-center">
@@ -43,9 +55,9 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              <div className="flex aspect-video w-full flex-col bg-green-300 text-xs font-bold tracking-tight text-neutral-500">
+              <div className="flex aspect-video w-full flex-col bg-neutral-50 text-xs font-bold tracking-tight text-neutral-500">
                 <video src="d.mp4"></video>
-                <div className="flex items-center justify-between gap-4 bg-white py-2 pl-2">
+                <div className="flex items-center justify-between gap-4 overflow-hidden rounded bg-white px-2 py-2 shadow-md">
                   <div className="flex items-center gap-4">
                     <span className="bg-neutral-50/0">
                       3338人正在看，已装填478条弹幕
@@ -77,8 +89,155 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
+                <div className="tex-xs flex w-full cursor-pointer justify-between rounded px-4 py-4 shadow">
+                  <div className="flex gap-8">
+                    <div
+                      className="flex items-center gap-1"
+                      onClick={() =>
+                        setStar((_prev) => ({
+                          star: !_prev.star,
+                          count: _prev.star ? _prev.count - 1 : _prev.count + 1,
+                        }))
+                      }
+                    >
+                      <StarIcon
+                        className={cn(
+                          star.star ? "text-yellow-500" : "text-neutral-600",
+                        )}
+                      ></StarIcon>
+                      <span className="text-sm font-bold">{star.count}</span>
+                    </div>
+
+                    <div
+                      className="flex items-center gap-1"
+                      onClick={() =>
+                        setStar((_prev) => ({
+                          star: !_prev.star,
+                          count: _prev.star ? _prev.count - 1 : _prev.count + 1,
+                        }))
+                      }
+                    >
+                      <Share2Icon className="text-neutral-600"></Share2Icon>
+                      <span className="text-sm font-bold">393</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex items-center gap-1 text-neutral-500/50 hover:text-sky-400">
+                      <TriangleAlertIcon></TriangleAlertIcon>搞件投诉
+                    </div>
+                    <div className="flex items-center gap-1 text-neutral-500/50 hover:text-sky-400">
+                      <NotebookPenIcon></NotebookPenIcon>记笔记
+                    </div>
+                    <div className="hover:text-sky-400">
+                      <MoreVertical></MoreVertical>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex w-full flex-col gap-2 py-4 pt-6 shadow-xs">
+                  <span className="block text-xl font-semibold tracking-wide text-black">
+                    含1年游泳指导-自由泳课程【重量版】
+                  </span>
+                  <div className="flex items-center gap-8 text-sm font-medium">
+                    <span className="flex items-center gap-2">
+                      <FileVideoIcon></FileVideoIcon> 18.6万
+                    </span>
+                    <span>已完结 · 共104课时 有效期1年</span>
+                  </div>
+                  <span className="font-medium text-neutral-500/80">
+                    体系化的教学视频，清晰的分解步骤，更重要的是群内指导~
+                  </span>
+                </div>
+                <div className="bg-neutral-50 px-2 shadow">
+                  <div className="flex items-center justify-between py-4">
+                    <span className="text-lg text-black">发布者</span>
+                    <button className="bg-muted flex items-center gap-1 rounded-xs px-2 py-1 text-neutral-500/60 hover:cursor-pointer">
+                      <MenuIcon></MenuIcon>已关注
+                    </button>
+                  </div>
+                  <div className="flex gap-2 py-2">
+                    <img
+                      src="/slider/2.png"
+                      className="size-14 rounded-full object-cover"
+                    ></img>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-lg">梦觉教游泳</span>
+                      <span>梦觉</span>
+                      <span>游泳一级运动员</span>
+                      <span>有多年教学经验</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="tex-xs top-30 h-[190px] w-full bg-amber-300"></div>
+              <div className="bg-neutral-50 px-2 pt-8 shadow-lg">
+                <div className="flex items-center gap-10">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl font-semibold">评论 </span>{" "}
+                    <span className="text-neutral-400">3528</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="cursor-pointer hover:text-sky-400">
+                      最热
+                    </span>
+                    |
+                    <span className="cursor-pointer hover:text-sky-400">
+                      最新
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 py-4">
+                  <img
+                    src="/slider/0.png"
+                    alt=""
+                    className="size-14 rounded-full"
+                  />
+                  <div className="flex-1">
+                    <input
+                      className="h-12 w-full flex-1 rounded-xl border-1 border-neutral-200 px-4 outline-0"
+                      placeholder="宫廷玉液酒，评论走一走"
+                    ></input>
+                    <div className="mt-2 flex w-full justify-between">
+                      <div className="flex gap-2 pt-2 text-xl text-neutral-500">
+                        <SmileIcon className="cursor-pointer hover:text-sky-400"></SmileIcon>
+                        <AtSign className="cursor-pointer hover:text-sky-400"></AtSign>
+                        <ImageIcon className="cursor-pointer hover:text-sky-400"></ImageIcon>
+
+                        <div className="flex cursor-pointer items-center px-10">
+                          <div className="inline-flex items-center">
+                            <label className="relative flex cursor-pointer items-center">
+                              <input
+                                type="checkbox"
+                                className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 shadow transition-all checked:border-sky-400 checked:bg-sky-400 hover:shadow-md"
+                                id="check1"
+                              />
+                              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white opacity-0 peer-checked:opacity-100">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-3.5 w-3.5"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clipRule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </label>
+                          </div>
+                          <div className="text-xs">同时转发到我的动态</div>
+                        </div>
+                      </div>
+                      <button className="cursor-pointer rounded bg-sky-400 px-2 py-1 text-sm font-semibold text-white hover:bg-sky-500">
+                        发布
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="flex min-h-[2048px] flex-col justify-between">
