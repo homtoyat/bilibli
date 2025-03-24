@@ -193,7 +193,7 @@ export default function Page() {
                   />
                   <div className="flex-1">
                     <input
-                      className="h-12 w-full flex-1 rounded-xl border-1 border-neutral-200 px-4 outline-0"
+                      className="hover:bg-whiteu h-12 w-full flex-1 rounded-xl border-1 border-neutral-200 px-4 outline-0"
                       placeholder="宫廷玉液酒，评论走一走"
                     ></input>
                     <div className="mt-2 flex w-full justify-between">
