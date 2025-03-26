@@ -4,6 +4,7 @@ import { WhiteNavBar } from "@/modules/home/ui/components/nav-bar/white-bar";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   AtSign,
+  BookIcon,
   ChevronDown,
   ChevronRight,
   CircleSlashIcon,
@@ -21,14 +22,18 @@ import {
   SmileIcon,
   StarIcon,
   TextIcon,
+  ThumbsDownIcon,
+  ThumbsUpIcon,
   TriangleAlertIcon,
   TvIcon,
+  VideoIcon,
 } from "lucide-react";
 import { useState } from "react";
 
 export default function Page() {
   const [showSubsetList, setShowSubsetList] = useState(false);
   const [star, setStar] = useState({ star: false, count: 123 });
+  const [autoPlay, setAutoPlay] = useState(false);
   return (
     <div className="relative h-fit min-h-screen w-screen bg-neutral-200/50">
       <div className="flex w-screen justify-center">
@@ -238,10 +243,52 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              <div className="bg-white">
+                {[
+                  33, 1, 2, 3, 3, 24, 24, 24, 243, 345, 234, 23, 234, 324, 234,
+                  1231, 2345, 34325, 23, 1333, 3333,
+                ].map((comment, index) => {
+                  return (
+                    <div key={index} className="flex items-start gap-4 pt-4">
+                      <div className="">
+                        <img
+                          src="slider/2.png"
+                          alt="png"
+                          className="size-12 rounded-full"
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col gap-4">
+                        <h3 className="flex gap-1">
+                          君崽
+                          <span className="bg-fuchsia-500 tracking-tighter text-white">
+                            Lv2
+                          </span>
+                        </h3>
+                        <span className="text-sm">
+                          我感觉我有机导师，看不懂质谱[笑哭]
+                          让学生一帧一帧地找目标产物峰，靠非共价作用力的基团去凑质谱峰，而且高分辨质谱小数点第一位还不对[大哭][大哭]
+                        </span>
+                        <div className="flex items-center gap-8 text-sm font-light text-neutral-500">
+                          <span>2025-03-25 19:14 </span>
+                          <span className="flex items-center gap-1 hover:text-sky-500">
+                            <ThumbsUpIcon></ThumbsUpIcon> 55
+                          </span>
+                          <span className="flex items-center hover:text-sky-500">
+                            <ThumbsDownIcon></ThumbsDownIcon>
+                          </span>
+                          <span className="flex items-center hover:text-sky-500">
+                            回复
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="flex min-h-[2048px] flex-col justify-between">
-              <div className="sticky -top-130 flex flex-col gap-2">
+            <div className="flex min-h-[2048px] flex-col items-stretch">
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <div className="flex size-10 items-center justify-center rounded-full bg-amber-600 bg-[url(/banner.png)] text-white">
                     HT
@@ -381,7 +428,84 @@ export default function Page() {
                   </AnimatePresence>
                 </motion.div>
               </div>
-              <div className="h-[1000px] bg-transparent"> </div>
+              <div className="sticky -top-240 h-[10px] bg-transparent">
+                <div className="flex items-center justify-between">
+                  <span>接下来播放</span>
+                  <div>
+                    <span className="flex items-center gap-4 p-4 text-neutral-400">
+                      自动播放
+                      <motion.button
+                        className="relative h-4 w-8 cursor-pointer rounded-full border-none ring-0"
+                        variants={{
+                          pause: {
+                            backgroundColor: "rgba(156, 156, 156, 1)",
+                            boxShadow: "0px 0px 0px 4px rgba(156, 156, 156, 1)",
+                          },
+                          play: {
+                            backgroundColor: "rgba(50, 163, 255, 1)",
+                            boxShadow: "0px 0px 0px 4px rgba(50, 163, 255, 1)",
+                          },
+                        }}
+                        animate={autoPlay ? "play" : "pause"}
+                        initial="pause"
+                        transition={{ type: "tween", duration: 0 }}
+                        onClick={() => setAutoPlay((__prev) => !__prev)}
+                      >
+                        <motion.div
+                          className="absolute top-1/2 size-4 -translate-y-1/2 rounded-full bg-white"
+                          variants={{
+                            pause: {
+                              left: "0%",
+                              translateX: 0,
+                              transition: { duration: 0.2 },
+                            },
+                            play: {
+                              left: "100%",
+                              translateX: "-100%",
+                              transition: { duration: 0.2 },
+                            },
+                          }}
+                        ></motion.div>
+                      </motion.button>
+                    </span>
+                  </div>
+                </div>
+                <div className="flex w-full flex-col gap-4">
+                  {[2, 32, 323, 23, 23231, 2, 323, 234, 567, 8, 96, 6].map(
+                    (item, index) => {
+                      return (
+                        <div key={index} className="flex gap-2">
+                          <div className="">
+                            <img
+                              src="/slider/1.png"
+                              className="aspect-video w-44 rounded-lg"
+                            ></img>
+                          </div>
+                          <div className="w-full flex-1 rounded">
+                            <h1 className="line-clamp-2 w-[200px]">
+                              女子讲述自己16年花400万买了两套房现在2套只能卖150万
+                            </h1>
+                            <div className="flex gap-1 text-sm text-neutral-500">
+                              <span className="border-neutral-500">UP</span>
+                              社会小田up
+                            </div>
+                            <div className="flex text-sm">
+                              <div className="flex items-center gap-1 text-sm text-neutral-500">
+                                <VideoIcon size={16} />
+                                3.7万
+                              </div>
+                              <div className="flex items-center gap-1 text-sm text-neutral-500">
+                                <BookIcon size={16} />
+                                22
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    },
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
