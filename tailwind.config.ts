@@ -11,5 +11,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [textShaow],
+  plugins: [],
 } satisfies Config;
