@@ -7,6 +7,7 @@ import {
   SlidersHorizontalIcon,
   VideoIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 export const SubCategory = () => {
   return (
@@ -32,7 +33,7 @@ export const SubCategory = () => {
       </div>
       <div className="col-span-7 flex h-fit flex-wrap gap-4 border-r-2">
         {[
-          "翻剧",
+          "番剧",
           "国创",
           "综艺",
           "动画",
@@ -56,12 +57,11 @@ export const SubCategory = () => {
           "动物",
         ].map((item) => {
           return (
-            <span
-              key={item}
-              className="h-fit w-20 cursor-pointer rounded-lg bg-neutral-100 px-2 py-2 text-center text-neutral-600 ring-neutral-400/30 duration-700 hover:bg-neutral-300"
-            >
-              {item}
-            </span>
+            <Link href={"/video"} key={item}>
+              <span className="h-fit w-20 cursor-pointer rounded-lg bg-neutral-100 px-2 py-2 text-center text-neutral-600 ring-neutral-400/30 duration-700 hover:bg-neutral-300">
+                {item}
+              </span>
+            </Link>
           );
         })}
       </div>

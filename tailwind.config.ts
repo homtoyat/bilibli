@@ -1,5 +1,5 @@
+import textShaow from "@designbycode/tailwindcss-text-shadow";
 import type { Config } from "tailwindcss";
-
 export default {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
@@ -12,5 +12,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [textShaow],
 } satisfies Config;

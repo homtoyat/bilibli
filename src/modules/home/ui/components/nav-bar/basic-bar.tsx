@@ -24,6 +24,7 @@ import {
   UploadIcon,
   VideoIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { MyAvatar } from "../avatar";
 import { MailBoxWithDropdown } from "../mailbox";
 interface Props {
@@ -47,11 +48,13 @@ export const Basicbar = ({
           <div className="flex gap-2 px-4">
             <MenuItem>
               <motion.div className="flex" ref={null}>
-                <p className={cn("hover:animate-updown", textColor)}>首页</p>
+                <Link href={"/"}>
+                  <p className={cn("hover:animate-updown", textColor)}>首页</p>
+                </Link>
               </motion.div>
             </MenuItem>
             <MenuItem className={cn("hover:animate-updown", textColor)}>
-              番剧
+              <Link href={"/video"}> 番剧</Link>
             </MenuItem>
             <MenuItem className="hover:animate-updown">游戏中心</MenuItem>
             <MenuItem className="hover:animate-updown">会员购</MenuItem>
