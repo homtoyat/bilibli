@@ -40,7 +40,7 @@ export const Basicbar = ({
         className={cn(
           className,
           textColor,
-          "group relative z-100 flex h-32 min-w-[1024px] bg-cover bg-center",
+          "group relative z-100 flex h-fit min-w-[1024px] bg-cover bg-center",
         )}
       >
         <div className="flex h-16 w-full items-center">
