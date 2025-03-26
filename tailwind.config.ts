@@ -1,4 +1,3 @@
-import textShaow from "@designbycode/tailwindcss-text-shadow";
 import type { Config } from "tailwindcss";
 export default {
   content: [
