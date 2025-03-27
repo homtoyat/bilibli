@@ -1,12 +1,27 @@
 "use client";
-import { useClickOutside } from "@/hooks/useClickOutside";
 import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 export const SearchBar = () => {
   const [active, setActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  useClickOutside(ref, () => setActive(false));
+
+  useEffect(() => {
+    const eventHandler = (event: MouseEvent) => {
+      const el = ref?.current;
+      if (el && el.contains(event.target as Node)) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    };
+    window.addEventListener("mousedown", eventHandler);
+    return () => {
+      window.removeEventListener("mousedown", eventHandler);
+    };
+  }, [ref]);
+
   return (
     <div className="relative flex h-8 flex-3 flex-col p-2">
       <div
