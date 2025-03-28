@@ -47,13 +47,13 @@ export function Carousel({ items }: Props) {
       {/* 导航按钮 */}
       <button
         onClick={() => paginate(-1)}
-        className="absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer rounded-full bg-white/30 p-2 active:bg-white/60"
+        className="absolute top-1/2 left-4 -translate-y-1/2 cursor-pointer rounded-full bg-white/30 p-2 hover:bg-white/45 active:bg-white/60"
       >
         <ChevronLeft></ChevronLeft>
       </button>
       <button
         onClick={() => paginate(1)}
-        className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer rounded-full bg-white/30 p-2 active:bg-white/60"
+        className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer rounded-full bg-white/30 p-2 hover:bg-white/45 active:bg-white/60"
       >
         <ChevronRight></ChevronRight>
       </button>
