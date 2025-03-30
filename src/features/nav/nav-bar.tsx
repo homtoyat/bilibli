@@ -1,6 +1,15 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
+import {
+  ArchiveIcon,
+  Clock5,
+  CrownIcon,
+  DownloadIcon,
+  FanIcon,
+  LucideLightbulb,
+} from "lucide-react";
+import { NavBarLink } from "./nav-item-link";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap  text-sm font-medium transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -47,6 +56,96 @@ export const NavBar = ({
   return (
     <div className={cn(buttonVariants({ variant, size, className }))}>
       {children}
+    </div>
+  );
+};
+
+interface PortalNavBarInstanceProps {
+  variant?: "portal" | "category";
+}
+export const NavBarContentLeft = ({
+  variant = "portal",
+}: PortalNavBarInstanceProps) => {
+  return (
+    <div className="flex">
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        首页
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        番剧
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        直播
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        会员购
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        温画
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        赛事
+      </NavBarLink>
+      <NavBarLink variant={variant} className="hover:animate-updown" href="/">
+        <DownloadIcon></DownloadIcon>下载客户端
+      </NavBarLink>
+    </div>
+  );
+};
+
+export const NavBarContentRight = ({
+  variant = "portal",
+}: PortalNavBarInstanceProps) => {
+  return (
+    <div className="mt-2 flex">
+      <NavBarLink
+        variant={variant}
+        href="/"
+        className="hover:animate-updown"
+      ></NavBarLink>
+
+      <NavBarLink
+        variant={variant}
+        className="hover:animate-updown flex flex-col"
+        href="/"
+      >
+        <CrownIcon></CrownIcon>
+        <span className={cn("hidden lg:inline")}>大会员</span>
+      </NavBarLink>
+      <NavBarLink
+        variant={variant}
+        className="hover:animate-updown flex flex-col"
+        href="/"
+      >
+        <FanIcon
+          className={cn("animate-wiggle", "flex items-center")}
+        ></FanIcon>
+        <span className="hidden lg:inline">动态</span>
+      </NavBarLink>
+      <NavBarLink
+        variant={variant}
+        className="hover:animate-updown flex flex-col"
+        href="/"
+      >
+        <ArchiveIcon></ArchiveIcon>
+        <span className="hidden lg:inline"> 收藏</span>
+      </NavBarLink>
+      <NavBarLink
+        variant={variant}
+        className="hover:animate-updown flex flex-col"
+        href="/"
+      >
+        <Clock5></Clock5>
+        <span className="hidden lg:inline"> 历史</span>
+      </NavBarLink>
+      <NavBarLink
+        variant={variant}
+        className="hover:animate-updown flex flex-col"
+        href="/"
+      >
+        <LucideLightbulb className="hover:animate-updown"></LucideLightbulb>
+        <span className="hidden lg:inline">创作中心</span>
+      </NavBarLink>
     </div>
   );
 };
