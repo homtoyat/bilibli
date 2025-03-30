@@ -63,7 +63,11 @@ export default function Page() {
                 </div>
               </div>
               <div className="flex aspect-video w-full flex-col bg-neutral-50 text-xs font-bold tracking-tight text-neutral-500">
-                <video src="demo.mp4" controls></video>
+                <video src="demo.mp4" controls className="relative">
+                  <div className="absolute top-0 right-0 z-30 size-30 bg-amber-400/50">
+                    sdaklfj
+                  </div>
+                </video>
                 <div className="flex items-center justify-between gap-4 overflow-hidden rounded bg-white px-2 py-2 shadow-md">
                   <div className="flex items-center gap-4">
                     <span className="bg-neutral-50/0">
