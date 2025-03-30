@@ -1,8 +1,9 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { NavBar } from "@/features/nav/nav-bar";
+import { NavBarLink } from "@/features/nav/nav-item-link";
 import { Carousel } from "@/modules/home/Carousel";
 import { SubCategory } from "@/modules/home/SubCategory";
-import { NavBar } from "@/modules/home/ui/components/nav-bar";
 import { VideoItem } from "@/modules/home/VideoItem";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -45,9 +46,23 @@ export default function Page() {
     handleScroll(progressState);
   }, [isLoading, progressState, handleScroll]);
   return (
-    <div className="bg-wh min-w[1080px] mx-auto h-lvh max-w-[2560px]">
-      <motion.main className="w-full">
-        <NavBar></NavBar>
+    <div className="container mx-auto bg-white">
+      <motion.main className="">
+        <NavBar
+          variant="portal"
+          className="min-[1920px]: h-35 w-full items-center justify-center bg-transparent bg-[url(/banner.png)]"
+        >
+          <div>
+            <NavBarLink className="hover:animate-updown">首页</NavBarLink>
+            <NavBarLink className="hover:animate-updown">番剧</NavBarLink>
+            <NavBarLink className="hover:animate-updown">直播</NavBarLink>
+            <NavBarLink className="hover:animate-updown">会员购</NavBarLink>
+            <NavBarLink className="hover:animate-updown">温画</NavBarLink>
+            <NavBarLink className="hover:animate-updown">赛事</NavBarLink>
+            <NavBarLink className="hover:animate-updown">下载客户端</NavBarLink>
+          </div>
+        </NavBar>
+
         <div className="g-neutral-50/30 top-120 min-h-screen w-full px-24">
           <div className="relative h-full w-full">
             <SubCategory></SubCategory>
