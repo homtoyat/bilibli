@@ -45,7 +45,6 @@ export const NavItemLink = ({
   size,
   children,
   href,
-  ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
@@ -54,7 +53,6 @@ export const NavItemLink = ({
     <Link
       href={href}
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
     >
       {children}
     </Link>
@@ -78,7 +76,7 @@ export const VipItemHoverCard = ({
   variant,
   className,
 }: VipItemHoverCardProps) => {
-  const [showCard, setShowCard] = useState(false);
+  const [, setShowCard] = useState(false);
   return (
     <div
       onMouseEnter={() => {

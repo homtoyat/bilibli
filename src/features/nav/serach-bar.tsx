@@ -40,7 +40,6 @@ export const SearchBar = ({
   className,
   variant,
   size,
-  children,
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
