@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { WhiteNavBar } from "@/modules/home/ui/components/nav-bar/white-bar";
+
 import { AnimatePresence, motion } from "framer-motion";
 import {
   AtSign,
@@ -37,9 +37,7 @@ export default function Page() {
   return (
     <div className="relative h-fit min-h-screen w-screen bg-neutral-200/50">
       <div className="flex w-screen justify-center">
-        <div className="z-100">
-          <WhiteNavBar></WhiteNavBar>
-        </div>
+        <div className="z-100">{/* <WhiteNavBar></WhiteNavBar> */}</div>
 
         <div className="relative top-20 h-[3000px] w-full max-w-[2560px] min-w-[1080px] bg-white">
           <div className="flex w-full gap-4 px-26 py-8">
