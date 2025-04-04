@@ -4,7 +4,7 @@ import {
   NavBar,
   NavBarContentLeft,
   NavBarContentRight,
-} from "@/features/nav/nav-bar";
+} from "@/features/nav/NavBar";
 import { SearchBar } from "@/features/nav/serach-bar";
 import { Carousel } from "@/modules/home/Carousel";
 import { SubCategory } from "@/modules/home/SubCategory";
