@@ -1,8 +1,10 @@
 "use client";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
-import { ReactNode, useEffect, useState } from "react";
+
+import { useAnimationControls } from "framer-motion";
+import { useEffect, useState } from "react";
+import Dropdown from "./Dropdown";
 export default function Page() {
+  const [text, setText] = useState("select an item");
   const [open, setOpen] = useState(false);
   const controls = useAnimationControls();
   async function closeMenu() {
@@ -18,7 +20,27 @@ export default function Page() {
 
   return (
     <div className="h-screen w-screen">
-      <DropdownMenu.Root open={open} onOpenChange={setOpen}>
+      <Dropdown>
+        <Dropdown.Button>😊</Dropdown.Button>
+        <Dropdown.Menu>
+          <Dropdown.Item
+            onSelect={() => {
+              setText("hello ");
+            }}
+          >
+            hello{" "}
+          </Dropdown.Item>
+          <Dropdown.Item
+            onSelect={() => {
+              setText("world ");
+            }}
+          >
+            world
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+      <div className="top-20 pt-30">{text}</div>
+      {/* <DropdownMenu.Root open={open} onOpenChange={setOpen}>
         <DropdownMenu.Trigger className="rounded bg-amber-800 select-none">
           hello apple
         </DropdownMenu.Trigger>
@@ -48,44 +70,7 @@ export default function Page() {
             </DropdownMenu.Portal>
           )}
         </AnimatePresence>
-      </DropdownMenu.Root>
+      </DropdownMenu.Root> */}
     </div>
-  );
-}
-
-function Item({
-  children,
-  onSelect = () => {},
-  closeMenu = async () => {},
-}: {
-  children: ReactNode;
-  onSelect?: () => void;
-  closeMenu?: () => void;
-}) {
-  const controls = useAnimationControls();
-  return (
-    <DropdownMenu.Item
-      className="border-none text-slate-900 hover:border-0 hover:bg-sky-300 focus-visible:outline-0"
-      onSelect={async (e) => {
-        e.preventDefault();
-        await controls.start({
-          backgroundColor: "#FFF",
-          color: "#000",
-          transition: { duration: 0.3 },
-        });
-        await controls.start({
-          backgroundColor: "#38bdf8",
-          color: "#fff",
-          transition: { duration: 0.3 },
-        });
-        await closeMenu();
-        onSelect();
-      }}
-      asChild
-    >
-      <motion.div initial={{ x: 100 }} animate={controls}>
-        {children}
-      </motion.div>
-    </DropdownMenu.Item>
   );
 }
