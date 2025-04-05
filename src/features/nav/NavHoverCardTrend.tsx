@@ -22,7 +22,7 @@ export function NavHoverCardTrend() {
             exit={{ opacity: 0, y: 0 }}
             initial={{ opacity: 0, y: 0 }}
             transition={{ type: "spring" }}
-            className="flex flex-col rounded-md border-[1px] border-gray-100 bg-white text-sm tracking-tight"
+            className="flex flex-col overflow-hidden rounded-md border-[1px] border-gray-100 bg-white text-sm tracking-tight"
           >
             {["我的消息", "系统消息", "收到的赞", "回复我的", "@我的"].map(
               (item) => {

@@ -29,7 +29,7 @@ export function NavHoverCardPost() {
             exit={{ opacity: 0, y: 0 }}
             initial={{ opacity: 0, y: 0 }}
             transition={{ type: "spring" }}
-            className="flex flex-col rounded-md border-[1px] border-gray-100 bg-white text-sm tracking-tight"
+            className="flex flex-col overflow-hidden rounded-md border-[1px] border-gray-100 bg-white text-sm tracking-tight"
           >
             <ul className="flex gap-4 px-4 py-2">
               {[

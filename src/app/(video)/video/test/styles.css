@@ -1,0 +1,38 @@
+/* styles.css */
+.TabsRoot {
+  width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.TabsList {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.TabsTrigger {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.TabsTrigger[data-state="active"] {
+  background: #f0f4ff;
+  border-bottom: 2px solid #4f46e5;
+}
+
+.TabsContent {
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

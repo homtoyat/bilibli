@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import TrendTab from "../history/TrendTab";
 import NavHoverCard from "./NavHoverCard";
 export function NavHoverCardHistory() {
   const [open, setOpen] = useState(false);
@@ -16,26 +17,14 @@ export function NavHoverCardHistory() {
           </Link>
         </NavHoverCard.Icon>
         <NavHoverCard.Content>
-          <motion.ul
+          <motion.div
+            className="broder-[1px] rounded border-gray-100 bg-white text-sm tracking-tight"
             animate={{ opacity: 1, y: 5 }}
-            exit={{ opacity: 0, y: 0 }}
             initial={{ opacity: 0, y: 0 }}
             transition={{ type: "spring" }}
-            className="flex flex-col rounded-md border-[1px] border-gray-100 bg-white text-sm tracking-tight"
           >
-            {["我的消息", "系统消息", "收到的赞", "回复我的", "@我的"].map(
-              (item) => {
-                return (
-                  <li
-                    key={item}
-                    className="hover:bg-accent text-md cursor-pointer py-1 pr-12 pl-4"
-                  >
-                    <Link href={"/"}>{item}</Link>
-                  </li>
-                );
-              },
-            )}
-          </motion.ul>
+            <TrendTab></TrendTab>
+          </motion.div>
         </NavHoverCard.Content>
       </NavHoverCard>
     </NavHoverCard.Context.Provider>

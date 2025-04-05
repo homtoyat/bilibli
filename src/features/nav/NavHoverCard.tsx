@@ -15,12 +15,10 @@ export default function NavHoverCard({
   children: React.ReactNode;
 }) {
   const { open, setOpen } = useContext(NavHoverCardContext);
-
-  console.log({ open });
   return (
     <HoverCard.Root
       openDelay={100}
-      closeDelay={200}
+      closeDelay={100}
       open={open}
       onOpenChange={setOpen}
     >
@@ -36,16 +34,27 @@ function NavHoverCardIcon({ children }: { children: React.ReactNode }) {
 function NavHoverContent({
   children,
   align = "center",
+  sideOffset = 0,
 }: {
   children: React.ReactNode;
   align?: "end" | "center" | "start" | undefined;
+  sideOffset?: number;
 }) {
   const { open } = useContext(NavHoverCardContext);
+  console.log({ open });
+  if (!open) {
+    return null;
+  }
   return (
     <AnimatePresence>
       {open && (
         <HoverCard.Portal forceMount>
-          <HoverCard.Content align={align} sideOffset={0} side="bottom" asChild>
+          <HoverCard.Content
+            align={align}
+            sideOffset={sideOffset}
+            side="bottom"
+            asChild
+          >
             {children}
           </HoverCard.Content>
         </HoverCard.Portal>

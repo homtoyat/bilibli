@@ -2,6 +2,8 @@
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import { DownloadIcon } from "lucide-react";
+
+import { NavHoverCardAvatar } from "./NavHoverCardAvatar";
 import { NavHoverCardHistory } from "./NavHoverCardHistory";
 import { NavHoverCardInnovation } from "./NavHoverCardInnovation";
 import { NavHoverCardMessage } from "./NavHoverCardMessage";
@@ -95,12 +97,13 @@ export const NavBarContentLeft = ({
 export const NavBarContentRight = ({}: PortalNavBarInstanceProps) => {
   return (
     <div className="mt-2 flex gap-2">
-      <NavHoverCardVip></NavHoverCardVip>
-      <NavHoverCardMessage></NavHoverCardMessage>
-      <NavHoverCardHistory></NavHoverCardHistory>
-      <NavHoverCardTrend></NavHoverCardTrend>
-      <NavHoverCardInnovation></NavHoverCardInnovation>
-      <NavHoverCardPost></NavHoverCardPost>
+      <NavHoverCardAvatar key={0}></NavHoverCardAvatar>
+      <NavHoverCardVip key={1}></NavHoverCardVip>
+      <NavHoverCardMessage key={2}></NavHoverCardMessage>
+      <NavHoverCardHistory key={3}></NavHoverCardHistory>
+      <NavHoverCardTrend key={4}></NavHoverCardTrend>
+      <NavHoverCardInnovation key={5}></NavHoverCardInnovation>
+      <NavHoverCardPost key={6}></NavHoverCardPost>
     </div>
   );
 };
