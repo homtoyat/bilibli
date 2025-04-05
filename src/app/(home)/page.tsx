@@ -96,8 +96,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-
-        {/* <Carousel></Carousel> */}
       </motion.main>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>
     </div>
