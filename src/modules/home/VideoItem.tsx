@@ -7,7 +7,7 @@ interface Props {
 }
 export const VideoItem = ({ index }: Props) => {
   const [previewVideo, setPreviewVideo] = useState(false);
-  let timer: NodeJS.Timeout = null;
+  let timer: NodeJS.Timeout;
   return (
     <Link
       key={index}
