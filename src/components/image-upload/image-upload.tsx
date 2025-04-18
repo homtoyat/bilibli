@@ -16,7 +16,6 @@ export default function EditorWithImageUpload() {
         accept: "image/*",
         maxSize: 30,
         limit: 3,
-        upload: handleImageUpload,
         onError: (error) => console.error("Upload failed:", error),
       }),
     ],

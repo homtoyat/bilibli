@@ -6,7 +6,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 const MAX_CHARS = 100;
 const Tiptap = () => {
-  const [charCount, setCharCount] = useState(0);
+  const [setCharCount] = useState(0);
   const [lastValidContent, setLastValidContent] = useState("");
 
   const editor = useEditor({
