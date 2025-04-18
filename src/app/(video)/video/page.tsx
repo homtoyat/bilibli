@@ -1,6 +1,6 @@
 "use client";
+import Tiptap from "@/components/custom/Tiptap";
 import { cn } from "@/lib/utils";
-
 import { AnimatePresence, motion } from "framer-motion";
 import {
   AtSign,
@@ -110,8 +110,9 @@ export default function Page() {
                       }
                     >
                       <StarIcon
+                        fill="#f00"
                         className={cn(
-                          star.star ? "text-yellow-500" : "text-neutral-600",
+                          star.star ? "text-red-500" : "text-neutral-600",
                         )}
                       ></StarIcon>
                       <span className="text-sm font-bold">{star.count}</span>
@@ -201,10 +202,7 @@ export default function Page() {
                     className="size-14 rounded-full"
                   />
                   <div className="flex-1">
-                    <input
-                      className="h-12 w-full flex-1 rounded-xl border-1 border-neutral-200 px-4 outline-0 hover:bg-white"
-                      placeholder="宫廷玉液酒，评论走一走"
-                    ></input>
+                    <Tiptap></Tiptap>
                     <div className="mt-2 flex w-full justify-between">
                       <div className="flex gap-2 pt-2 text-xl text-neutral-500">
                         <SmileIcon className="cursor-pointer hover:text-sky-400"></SmileIcon>
